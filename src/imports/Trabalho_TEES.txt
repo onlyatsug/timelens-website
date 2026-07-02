@@ -1,0 +1,840 @@
+Ícone
+
+O conteúdo gerado por IA pode estar incorreto. 
+
+UNIVERSIDADE FEDERAL DE MATO GROSSO
+CIÊNCIA DA COMPUTAÇÃO
+
+
+
+
+AUGUSTO CESAR DOS SANTOS FERREIRA
+GUSTAVO SANTANA BARBOZA
+LUIZ GUILHERME DOS SANTOS
+MARIA EDUARDA MAIA PEREIRA
+
+
+
+
+
+
+Timelens: A Cápsula do Tempo Digital da UFMT 
+
+
+
+
+
+
+
+
+Projeto de Tópicos Especiais em Engenharia de Software
+Docente: Cristiano Maciel
+
+
+
+
+
+
+
+
+
+
+CUIABÁ - MATO GROSSO  2026
+1. Formulação do Sistema
+1.1 Identidade da Ferramenta
+1.1.1 Nome da ferramenta e explicação do nome
+O nome Timelens nasce da junção entre tempo (time) e lente (lens). A palavra "tempo" reflete a função de cápsula do projeto: preservar o legado das turmas e coletivos da UFMT, evitando que a memória institucional se perca a cada final de semestre. Já a "lente" traz um duplo sentido: um literal, ligado às fotos que alimentam a plataforma, e um social, funcionando como uma nova perspectiva para enxergar a história da universidade e dar protagonismo aos marcos de grupos minoritários. Além disso, ao ser pronunciado em voz alta, o nome soa propositalmente como timeless (atemporal em inglês). Esse trocadilho sonoro reforça a ideia central do aplicativo: garantir que as narrativas e conquistas da comunidade acadêmica não tenham prazo de validade.
+1.1.2 Visão de Produto
+  
+
+Para consolidar a visão do produto e evitar o desvio de escopo durante o desenvolvimento, o diagrama acima delimita claramente as fronteiras do Timele(ns)s .. Nos quadrantes positivos ("É" e "Faz"), reafirmamos a identidade central do sistema como uma rede social acadêmica focada na preservação da memória, destacando suas funções vitais: a indexação espaço-temporal nativa, as notificações por proximidade e as ferramentas de interação comunitária.
+Por outro lado, os quadrantes negativos são cruciais para alinhar as expectativas sobre o que está fora da alçada do projeto. Ao estabelecer que a plataforma não atuará como um repositório institucional de TCCs ou um fórum anônimo, e que não incluirá módulos complexos como chats privados e transmissões ao vivo, garantimos que o esforço da equipe permaneça estritamente focado no resgate histórico e no mapeamento do legado social da UFMT Campus Cuiabá.
+1.2 Necessidades e Objetivos
+1.2.1 Necessidades do Negócio
+A principal motivação para o desenvolvimento do Timele(ns)s surge da necessidade de preservar e divulgar o legado histórico e digital da UFMT Campus Cuiabá. Atualmente, muitas iniciativas acadêmicas, projetos científicos e, sobretudo, marcos e conquistas de grupos minoritários acabam se perdendo ou ficando restritos a arquivos isolados com o passar dos semestres. Existe uma carência de um ambiente unificado que funcione como uma "cápsula do tempo", capaz de registrar essas memórias de forma estruturada para que não sejam esquecidas, garantindo que o conhecimento e as pautas sociais desenvolvidas na instituição permaneçam acessíveis para as futuras gerações.
+1.2.2 Identificação dos usuários
+O público-alvo do Timele(ns)s é composto por toda a comunidade acadêmica que vivencia o ecossistema da universidade. Isso engloba os jovens estudantes, abrangendo desde calouros interessados na história do campus até veteranos e egressos que desejam registrar os legados de seus coletivos e projetos, professores, técnicos administrativos e demais colaboradores institucionais. O sistema é voltado para qualquer membro dessa comunidade que tenha interesse em explorar, documentar ou debater as iniciativas sociais e científicas da instituição.
+1.2.3 Descrição dos objetivos da WebApp
+O Timele(ns)s tem como objetivo central democratizar o acesso à memória institucional da UFMT, funcionando como um repositório vivo das iniciativas e eventos que moldaram o campus. Ao invés de permitir que o histórico de projetos científicos, ações culturais e conquistas de grupos minoritários se perca a cada novo ciclo de formaturas, a plataforma visa arquivar e expor esses marcos de forma acessível. Esse resgate histórico é fundamental para evitar o apagamento de pautas sociais importantes e garantir que o esforço das gerações anteriores seja devidamente reconhecido e documentado.
+Além da preservação do legado digital, a aplicação busca ativamente fomentar o senso de comunidade e o engajamento estudantil. Ao fornecer um ambiente onde o passado e o presente da instituição se conectam, o Timele(ns)s tem o objetivo de estimular o debate crítico sobre pautas locais e inspirar novos alunos a darem continuidade a projetos históricos. Dessa forma, o sistema transcende a função de um mero arquivo fotográfico, posicionando-se como uma ferramenta de conexão social que fortalece a identidade acadêmica e promove a visibilidade de vozes historicamente marginalizadas dentro do ambiente universitário.
+
+
+1.3 Metas e Definição
+1.3.1 Metas Informacionais e Aplicativas
+
+
+No que tange às metas informacionais, o sistema foi projetado para atuar como um provedor de conteúdo histórico e contextual, entregando aos usuários o acesso direto a registros de iniciativas sociais, com especial destaque para projetos liderados por ou focados em minorias, bem como marcos científicos e acadêmicos. A principal meta neste escopo é garantir que cada uma dessas iniciativas possua sua própria linha do tempo interativa rica em informações, permitindo que a comunidade compreenda a evolução, os desafios e os resultados de cada projeto ao longo dos anos, com acesso a mídias e relatos que detalham essas trajetórias.
+Para viabilizar a construção e o consumo desse acervo, o Timele(ns)s define um conjunto de metas aplicativas voltadas para a usabilidade e a participação ativa dos usuários. A aplicação deve fornecer ferramentas intuitivas para o upload contínuo de materiais fotográficos e documentais, além de garantir uma navegação fluida por essas linhas do tempo interativas. Adicionalmente, é uma meta aplicativa essencial permitir que o usuário filtre o conteúdo de maneira precisa, utilizando tags de relevância social, e interaja com as publicações por meio de comentários, garantindo a dinamicidade característica de uma rede social moderna.
+1.3.2 Definição das principais características e funções
+A principal característica estrutural do Timele(ns)s é a sua abordagem de indexação dupla, que organiza o conteúdo gerado pelos usuários com base em coordenadas espaciais e recortes temporais. O sistema oferecerá a funcionalidade de mapeamento das memórias, permitindo que os marcos fotográficos e relatos sejam ancorados geograficamente aos blocos, praças e laboratórios do Campus Cuiabá onde ocorreram. Paralelamente, a função de indexação cronológica ordenará esses registros em linhas do tempo, possibilitando que os membros da comunidade explorem o legado da universidade tanto navegando pelo espaço físico quanto avançando e retrocedendo nas épocas.
+Complementando essa arquitetura de dados espacial e temporal, o sistema integrará funções interativas adaptadas ao seu contexto acadêmico. Isso inclui ferramentas para a criação e gerenciamento de perfis de usuários ou coletivos, mecanismos de upload de galerias fotográficas e um sistema robusto de classificação de postagens por meio de tags temáticas. A aplicação também contará com funções de engajamento, notadamente seções de comentários em cada marco da linha do tempo, criando um espaço seguro e estruturado para a discussão contínua de pautas locais e acadêmicas.
+1.3.3 Categorias em que se enquadra a WebApp
+Considerando sua arquitetura e o fluxo de dados proposto, o Timele(ns)s se enquadra em uma composição de diferentes categorias de aplicações web. A plataforma atua fundamentalmente como um sistema de Interação e Comunicação, pois incorpora elementos essenciais de redes sociais ao promover trocas e discussões assíncronas entre os membros da comunidade. O sistema também se caracteriza pela Entrada de Dados, visto que depende de formulários e do envio constante de mídias pelos próprios usuários para construir seu acervo histórico.
+Devido à sua mecânica de indexação cronológica e geográfica, o sistema enquadra-se na categoria de Acesso a base de dados, exigindo consultas estruturadas para recuperar as linhas do tempo de acordo com os filtros aplicados. Por fim, a aplicação possui traços claros de um sistema Informacional, ao disponibilizar conteúdo de pesquisa e leitura sobre a história da instituição, e Adaptável, na medida em que a organização do conteúdo exibido aos usuários se ajusta aos critérios de tempo, localização e interesses selecionados durante a navegação.
+1.4 Definição do modelo de desenvolvimento do sistema ideal
+Para o desenvolvimento do Timele(ns)s , o modelo ideal a ser adotado é o ágil, com a aplicação específica do framework Scrum. A escolha por uma metodologia ágil justifica-se pela natureza dinâmica e evolutiva de uma aplicação com características de rede social, onde a usabilidade e a arquitetura da informação podem exigir ajustes à medida que o sistema toma forma. Essa abordagem garante entregas de valor contínuas, permitindo que a equipe valide hipóteses arquiteturais e de interface ao longo de todo o ciclo de desenvolvimento.
+A aplicação do Scrum no contexto deste projeto se dará através da divisão do esforço de trabalho em ciclos curtos e bem definidos, conhecidos como Sprints. Essa organização permitirá que o grupo priorize e desenvolva módulos específicos a cada iteração, focando, por exemplo, na infraestrutura de geolocalização em um primeiro momento e na construção da linha do tempo interativa no ciclo seguinte. As cerimônias ágeis, como o planejamento e as revisões ao final de cada Sprint, garantirão o alinhamento constante da equipe sobre os requisitos do sistema, facilitando a adaptação rápida a eventuais feedbacks ou refinamentos nas metas aplicativas e informacionais da plataforma.
+1.5 Implicações Éticas
+O desenvolvimento do Timelens exige um compromisso rigoroso com a privacidade e a segurança digital, especialmente por lidar com dados de geolocalização e informações atreladas aos perfis da comunidade acadêmica. Para assegurar o respeito à privacidade do usuário e a adequação legal, o rastreamento espacial necessário para o funcionamento do mapa e das notificações deve operar exclusivamente mediante consentimento explícito, sem qualquer monitoramento invisível. Eticamente, a decisão de exigir autenticação para o uso do sistema, rejeitando o anonimato, atua como um mecanismo de proteção essencial para inibir comportamentos tóxicos, assédio e discursos de ódio, garantindo um ambiente seguro para as interações.
+No âmbito moral, ao se posicionar como uma "cápsula do tempo" e dar protagonismo a projetos acadêmicos e marcos de grupos minoritários, a plataforma assume a forte responsabilidade de combater o apagamento histórico. Isso implica o compromisso de garantir que a autoria de materiais fotográficos, relatos e iniciativas seja sempre creditada aos seus verdadeiros idealizadores, prevenindo o revisionismo ou a apropriação indevida. Dessa forma, a aplicação deve ser mantida como um memorial colaborativo e plural, amparada por diretrizes de moderação que protejam ativamente o legado e as narrativas de quem ajudou a construir a história do campus.
+1.6 Uso crítico de IA
+Durante a fase de formulação do Timele(ns)s , a inteligência artificial foi utilizada como uma ferramenta de suporte para potencializar o processo criativo e auxiliar na estruturação técnica inicial. A equipe adotou uma postura de supervisão constante, tratando os resultados gerados não como soluções definitivas, mas como insumos para discussões internas. Esse uso permitiu acelerar etapas de exploração de ideias, garantindo que as decisões finais permanecessem sob total responsabilidade e critério dos integrantes do grupo.
+Para a definição da identidade e do nome da ferramenta, a IA foi empregada em uma sessão de brainstorming voltada a encontrar termos que equilibrassem o rigor acadêmico com a modernidade de uma rede social. O comando específico utilizado para essa tarefa foi: “Atue como um especialista em engenharia de software. Estou desenvolvendo uma nova rede social com a seguinte proposta: <Imagem anexada com a definição do nosso projeto> . Com base nisso, crie uma lista com 10 sugestões de nomes em inglês e 10 sugestões em português. Para cada sugestão, explique brevemente o conceito e o porquê ele se conecta bem com a proposta.”
+Além da etapa criativa, a ferramenta auxiliou no enquadramento do sistema dentro das taxonomias clássicas de engenharia de software. Para alinhar o projeto às categorias teóricas discutidas em aula, foi utilizado o seguinte prompt: “Com base nas definições de categorias de WebApps contidas nas imagens <Imagens anexadas dos slides contendo as categorias>, analise a proposta do [NOME] e identifique em quais delas ele se enquadra. Justifique cada escolha relacionando-as diretamente com as funcionalidades de geolocalização e rede social do projeto.” Esse processo ajudou a fundamentar a natureza híbrida da aplicação.
+Por fim, a inteligência artificial foi empregada de maneira pontual para a revisão de coesão e correção gramatical dos textos produzidos. Essa prática garantiu que a documentação mantivesse a clareza e a formalidade exigidas no ambiente acadêmico, sem interferir na autoria dos requisitos técnicos e dos objetivos estratégicos estabelecidos pela equipe para a UFMT.
+2. Análise de Mercado e Requisitos
+2.1 Análise de Mercado e Grau de Inovação
+2.1.1 Análise de Concorrentes (Diretos e Indiretos)
+O timele(ns)s não possui um concorrente direto exato dentro do ecossistema acadêmico tradicional, mas disputa a atenção e o engajamento dos usuários com soluções indiretas que atualmente fragmentam a memória institucional:
+
+
+Redes Sociais Tradicionais (Instagram, grupos de Facebook, LinkedIn): São os principais substitutos informais hoje. Embora tenham alto engajamento, falham na preservação a longo prazo. O conteúdo é efêmero, engolido por algoritmos de feed, e é quase impossível resgatar um marco específico (ex: uma iniciativa estudantil de 2018) através de recortes espaciais e temporais.
+Armazenamento em Nuvem (Google Drive, Notion dos centros acadêmicos): Funcionam como silos de informação isolados. A memória fica restrita aos membros atuais da gestão de um projeto, e o conhecimento se perde quando esses alunos se formam, sem alcance para a comunidade geral.
+2.1.2 Grau de Inovação
+O grau de inovação do timele(ns)s é alto no nicho de tecnologia educacional e social, enquadrando-se como uma inovação arquitetural. Ele pega conceitos validados do mercado (interface de redes sociais, mapas interativos e murais de fotos) e os recombina para resolver o problema do "apagamento histórico" em instituições de ensino.
+Seu principal diferencial inovador é a Indexação Dupla (Espaço-Tempo) estruturada para a colaboração em massa. Em vez de rolar um feed infinito e descontextualizado, o usuário interage com a história viva do campus, onde cada marco existe em uma coordenada geográfica real (ex: um bloco específico) e uma linha do tempo imutável, gamificando e organizando a exploração do legado de grupos minoritários e projetos científicos.
+2.2 Modelo do Negócio
+Devido à sua natureza voltada para o ambiente universitário e o foco na democratização do acesso à memória, o timele(ns)s adota um modelo de negócios focado em Sustentabilidade Institucional e Acesso Aberto, distanciando-se de abordagens comerciais predatórias (como venda de dados ou anúncios intrusivos).
+2.2.1 Estrutura de Custos e Receitas
+Modelo de Acesso (Gratuito/Freemium): O acesso à plataforma será 100% gratuito para estudantes, professores, técnicos e egressos. A imposição de barreiras financeiras inviabilizaria o objetivo central da aplicação, que é o resgate de pautas sociais e o engajamento estudantil massivo.
+Fontes de Manutenção e Financiamento: Editais de Fomento e Pesquisa: Captação de recursos por meio de agências de fomento (como FAPEMAT, CNPq) voltadas para inovação tecnológica, preservação da memória e projetos de extensão.
+Adoção Institucional: A longo prazo, o sistema pode ser adotado oficialmente pelas Pró-Reitorias da instituição (como a de Cultura e Extensão) ou pela Secretaria de Tecnologia da Informação (STI) como infraestrutura oficial, que absorveria os custos de hospedagem em nuvem em troca de métricas de engajamento e integração com o portal do aluno.
+Open Source: O desenvolvimento contínuo e a manutenção podem ser integrados ao ecossistema dos cursos de computação, geridos por alunos, centros acadêmicos ou laboratórios de engenharia de software como um projeto contínuo, reduzindo drasticamente os custos de mão de obra de TI.
+2.2.2 Proposta de Valor
+O "lucro" do projeto não é financeiro no curto prazo, mas sim em capital intelectual e social. A plataforma entrega valor ao evitar o retrabalho de alunos que tentam recriar projetos do zero, visibilidade perene para pesquisas de professores e o fortalecimento da identidade e permanência estudantil através do pertencimento e do registro histórico das conquistas do campus.
+2.3 Coleta de requisitos (funcionais, não funcionais e conteúdo)
+to-do: pensar no pós morte do usuario
+2.3.1 Requisitos Funcionais
+v1.1.2
+
+
+	Gestão de Contas e Perfis
+	RF01
+	O sistema deve permitir o cadastro e a autenticação de usuários da comunidade acadêmica. 
+	RF02
+	O sistema deve diferenciar usuários comuns de administradores.
+	RF03
+	O sistema deve permitir ao usuário editar ou excluir sua conta e dados associados.
+	RF04
+	O sistema deve permitir aos administradores bloquear o acesso de qualquer usuário comum. 
+	RF05
+	O sistema deve permitir ao usuário adicionar foto de perfil e biografia. 
+	
+
+	Gestão de Conteúdo e Mídia
+	RF06
+	O sistema deve possibilitar o upload contínuo de materiais fotográficos.
+	RF07
+	O sistema deve permitir ao usuário criar postagem associando texto, imagem e metadados. 
+	RF08
+	O sistema deve possibilitar ao criador editar ou excluir sua própria postagem.
+	RF09
+	O sistema deve permitir a classificação de postagens por meio de tags temáticas e de relevância social.
+	
+
+	Indexação Espacial e Cronológica
+	RF10
+	O sistema deve permitir a ancoragem geográfica na postagem
+	RF11
+	O sistema deve permitir a associação de uma postagem a outra por meio de tags específicas.
+	RF12
+	O sistema deve exibir uma interface de mapa interativo do campus para navegação espacial. 
+	RF13
+	O sistema deve gerar e exibir uma linha do tempo cronológica interativa contendo postagens relacionadas a uma tag específica. INOVA
+	RF14
+	O sistema deve permitir ao usuário acessar a postagem completa a partir da sua linha do tempo pertencente.
+	
+
+	Filtros e Consultas
+	RF15
+	O sistema deve permitir ao usuário filtrar o conteúdo usando tags temáticas.
+	RF16
+	O sistema deve permitir ao usuário filtrar o conteúdo por um período de tempo específico.
+	RF17
+	O sistema deve fornecer busca textual para encontrar postagens por nome.
+	
+
+	Engajamento e Comunidade
+	RF18
+	O sistema deve exibir postagens em destaque com base em popularidade % tempo. 
+	RF19
+	O sistema deve notificar o criador quando houver interações em suas postagens.
+	RF20
+	O sistema deve permitir aos usuários curtirem e comentarem em uma sessão de comentários nas postagens.
+	RF21
+	O sistema deve permitir aos usuários apagarem seus próprios comentários.
+	RF22
+	O sistema deve permitir aos usuários marcarem outros perfis nos comentários.
+	RF23
+	O sistema deve permitir aos administradores apagar qualquer comentário.
+	RF24
+	O sistema deve exibir indicadores de engajamento em cada postagem.
+	RF25
+	O sistema deve gerar um link único compartilhável para cada postagem. 
+	RF26
+	O sistema deve notificar os usuários ao passar próximo ao local físico de uma postagem. INOVA
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+2.3.2 Requisitos Não funcionais
+v1.0.1
+
+
+	Usabilidade e Acessibilidade 
+	RNF01
+	A interface do sistema deve garantir uma navegação fluida e intuitiva pelas linhas do tempo.
+	RNF02
+	O frontend da aplicação deve ser totalmente responsivo adaptando-se a dispositivos móveis e desktops.
+	RNF03
+	Os formulários de upload e entrada de dados devem fornecer feedback visual de forma imediata ao usuário.
+	RNF04
+	A interface do mapa do campus deve suportar gestos de toque (pinch-to-zoom) em dispositivos móveis.
+	
+
+	Performance e Eficiência 
+	RNF05
+	A linha do tempo interativa deve completar o carregamento inicial em menos de 2 segundos sob condições normais de rede.
+	RNF06
+	As consultas de indexação dupla (espacial e temporal) devem retornar resultados em no máximo 500 milissegundos.
+	RNF07
+	O feed principal e a seção de comentários devem utilizar infinite scroll durante a renderização dos dados.
+	RNF08
+	O backend do sistema deve comprimir arquivos de imagem automaticamente no momento do upload.
+	
+
+	Segurança e Confiabilidade 
+	RNF09
+	O banco de dados deve criptografar senhas utilizando algoritmos de hash seguros (bcrypt ou Argon2).
+	RNF10
+	O módulo de autenticação deve impedir que usuários não autenticados realizem postagens ou comentários.
+	RNF11
+	 O tráfego de dados da aplicação deve operar exclusivamente sobre o protocolo HTTPS para proteção dos usuários.
+	
+
+	Arquitetura, Interoperabilidade e Suportabilidade
+	RNF12
+	A base de dados deve executar rotinas de backup automático regular para garantir a preservação da memória digital.
+	
+
+
+
+
+
+2.3.3 Requisitos de Conteúdo
+v1.0.1
+
+
+	Memória Institucional e Narrativas
+	RC01
+	A plataforma deve disponibilizar textos explicativos sobre a história, fundação e evolução dos coletivos e grupos minoritários.
+	RC02
+	O sistema deve exibir relatos textuais ou multimídia que documentem os desafios e resultados dos projetos ao longo dos anos.
+	RC03
+	Cada projeto ou iniciativa documentada deve possuir uma narrativa de trajetória para composição de sua linha do tempo interativa.
+	
+
+	Mídias
+	RC04
+	O sistema deve armazenar e exibir galerias fotográficas para ilustração de marcos históricos e eventos da universidade.
+	
+
+	Geolocalização e Temporalidade
+	RC05
+	A plataforma deve armazenar coordenadas espaciais vinculadas aos registros cadastrados.
+	RC06
+	O sistema deve exigir e exibir recortes temporais (datas ou períodos) para cada registro inserido nas linhas do tempo.
+	
+
+	Metadados e Classificação
+	RC07
+	O sistema deve armazenar e exibir dados de autoria para creditar o usuário responsável pelo upload de cada marco.
+	
+
+	Engajamento e Textos do Sistema
+	RC08
+	 O sistema deve apresentar textos de diretrizes e moderação para garantia de um espaço seguro de discussão acadêmica.
+	2.4 Uso Crítico de IA
+Durante a etapa de análise de mercado e elicitação de requisitos, a inteligência artificial foi adotada como uma ferramenta de apoio técnico e criativo. A plataforma escolhida para esta fase foi o ChatGPT, utilizado sob uma perspectiva estritamente crítica e supervisionada: a IA não definiu o escopo, o modelo de negócios ou as restrições do sistema, mas atuou como um facilitador para expandir o brainstorming da equipe e garantir o rigor na formatação da documentação.
+Na fase de concepção das funcionalidades, o grupo já havia definido a necessidade de unir elementos de plataformas visuais com ferramentas de mapeamento. Para explorar cenários de uso dessa junção, o ChatGPT foi acionado por meio de um prompt exploratório:
+"Atue como um Engenheiro de Requisitos. Estou desenvolvendo uma rede social para uma comunidade acadêmica que foca em memória e geolocalização. Liste 10 requisitos funcionais que misturem a dinâmica do Instagram (feed/fotos) com a precisão de um mapa interativo do campus universitário."
+Os resultados fornecidos pela ferramenta serviram como base de inspiração. A equipe analisou criticamente a saída, filtrando as sugestões, descartando funcionalidades que fugiam do escopo (como sistemas de mensagens diretas) e adaptando as melhores ideias para a realidade institucional da UFMT e do projeto Timelens.
+Posteriormente, a inteligência artificial foi empregada como uma ferramenta de refinamento técnico. A escrita de requisitos exige uma padronização rígida para evitar ambiguidades que possam prejudicar o desenvolvimento futuro. Após o grupo compilar a lista bruta de necessidades do sistema, o ChatGPT foi utilizado para formatar o documento final, utilizando o seguinte prompt refinador:
+"Refaça e padronize todos os meus requisitos funcionais, requisitos não funcionais e de conteúdo, seguindo esse exato padrão: A/O [identificador] deve [funcionalidade] [condição/restrição]"
+Esse uso otimizou o tempo da equipe e garantiu que os tópicos da seção 2.3 seguissem as boas práticas de documentação de Engenharia de Software. Todo o texto gerado passou por uma revisão humana final para atestar que as condições, restrições e identificadores refletiam exatamente as decisões arquiteturais tomadas pelo grupo.
+
+
+
+
+
+
+3. Gerência do Projeto
+3.1 Planejamento: Marcos, atividades, produtos e cronograma
+O desenvolvimento do Timelens será guiado pelo framework Scrum, dividindo o esforço do semestre em Sprints de duas semanas. O cronograma abaixo mapeia os principais marcos do projeto, suas dependências e as entregas esperadas para garantir um MVP (Produto Mínimo Viável) funcional ao fim do semestre.
+
+
+Marco
+	Sprint e Duração
+	Atividades Principais
+	Dependências
+	Produtos (Entregáveis)
+	
+
+1. Fundação e Design
+	
+
+Sprint 1
+(2 semanas)
+	Configuração do repositório no GItHub, modelagem do banco de dados relacional e prototipação de interfaces.
+	
+
+Nenhuma
+	
+
+Protótipo navegável no Figma; Diagrama Entidade-Relacionamento; Ambientes de desenvolvimento configurados.
+	
+
+2. Autenticação e Gestão de Mídia
+	
+
+Sprint 2
+(2 semanas)
+	Desenvolvimento da API de cadastro/login, integração de upload e compressão de iimagens, CRUD de perfis.
+	
+
+Conclusão do Marco 1
+	
+
+Módulo de segurança funcional; Serviço de hospedagem de imagens .
+	
+
+3. Implementação do mapa e linha do tempo
+	
+
+Sprints 3 e 4
+(4 semanas)
+	Integração de API de mapas, lógica de geolocalização de postagens e programação da linha do tempo.
+	
+
+Conclusão do Marco 2
+	
+
+Mapa interativo renderizado (RF12); Linhas do Tempo funcionais geradas por local/tag (RF13, RF15).
+	
+
+4. Engajamento e Implantação
+	
+
+Sprint 5
+(2 Semanas)
+	Implementação do sistema de comentários, refinamento responsivo da interface e deploy em nuvem.
+	
+
+Conclusão do Marco 3
+	
+
+Sistema de comentários ativo; WebApp publicado e acessível via HTTPS (RNF11).
+	
+
+
+
+3.2 Recursos e Riscos
+
+
+Serão utilizados como recursos, as principais tecnologias utilizadas para produção de aplicações web que possibilitam o desenvolvimento de todos os requisitos do projeto.
+
+
+Camada
+	Ferramenta
+	Justificativa
+	Frontend
+	React.js
+	Permite a construção de interfaces reativas e componentizadas, essencial para a linha do tempo interativa (RF13) e o mapa do campus (RF12). A responsividade exigida pelo RNF02 é facilitada por bibliotecas do ecossistema React.
+	Backend
+	Node.js + Express
+	Oferece alta performance para operações assíncronas, adequado às consultas de indexação dupla que devem retornar em até 500ms (RNF06).
+	Banco de Dados
+	PostgreSQL
+	Suporte nativo a dados geoespaciais via extensão PostGIS, viabilizando a ancoragem geográfica das postagens (RF10) e as consultas por proximidade (RF26).
+	Autenticação
+	JWT + bcrypt
+	Implementação do controle de acesso entre usuários comuns e administradores (RF01, RF02) com criptografia de senhas conforme exigido pelo RNF09.
+	Mapas
+	Leaflet.js (OpenStreetMap)
+	Recomendado por ser gratuito e open source, alinhado ao modelo de negócios sem custos da plataforma. Alternativa: Google Maps API (pago, maior documentação).
+	Armazenamento de Imagens
+	Cloudflare R2 ou AWS S3
+	Necessário para hospedar as galerias fotográficas (RF06, RC04). Integra-se ao backend Node.js para compressão automática no upload (RNF08).
+	Prototipação
+	Figma
+	Utilizado no Sprint 1 para geração do protótipo navegável das interfaces antes do desenvolvimento.
+	Testes de API
+	Postman / Insomnia
+	Validação dos endpoints REST do backend, especialmente os módulos de autenticação, upload e geolocalização.
+	Versionamento
+	GitHub
+	Controle de versão e colaboração entre os integrantes da equipe ao longo das Sprints.
+	Deploy Frontend
+	Vercel
+	Deploy contínuo do frontend React com suporte nativo, garantindo o acesso via HTTPS (RNF11).
+	Deploy Backend
+	Railway ou Render
+	Hospedagem do servidor Node.js e do banco PostgreSQL com plano gratuito viável para o MVP.
+	
+
+3.3 Análise de Riscos
+Considerando a natureza técnica do projeto, o uso de integrações complexas (como geolocalização) e as restrições inerentes a um ambiente de desenvolvimento acadêmico (prazo reduzido, dedicação parcial da equipe e orçamento nulo), foi elaborada uma matriz de riscos para o Timelens. Os riscos foram categorizados em áreas operacionais, técnicas, de infraestrutura e de negócio.
+A tabela a seguir descreve esses mapeamentos, classificando sua probabilidade de ocorrência, o impacto no sucesso do MVP e os respectivos planos de contingência e mitigação.
+Categoria
+	Risco
+	Prob.
+	Impacto
+	Plano de Mitigação
+	Técnico
+	Atraso devido à curva de aprendizado tecnológica (ex: integração do mapa Leaflet e extensão PostGIS).
+	Alta
+	Alto
+	Iniciar os estudos e a construção de protótipos de geolocalização logo nas Sprints 1 e 2. Se a integração espacial se provar muito complexa, simplificar a exibição inicial do mapa para garantir a entrega funcional no prazo.
+	Equipe
+	Desalinhamento técnico ou gargalos na divisão de tarefas (excesso de dependência em um único membro do grupo).
+	Média
+	Alto
+	Realizar reuniões curtas de alinhamento semanal (baseadas nas Daily do Scrum) e manter o quadro Kanban do GitHub Projects rigorosamente atualizado. Adotar a prática de Pair Programming em módulos críticos (como autenticação).
+	Técnico
+	Falhas de integração entre Frontend e Backend (incompatibilidade na troca de dados das APIs).
+	Média
+	Alto
+	Definir e documentar os "contratos de API" (formato dos JSONs) logo no início da Sprint 2. Utilizar o Postman para mockar e testar as respostas antes de o frontend realizar a integração definitiva.
+	Negócio
+	Baixa adoção inicial ou falta de engajamento da comunidade acadêmica.
+	Média
+	Médio
+	Focar o lançamento (deploy) inicial em um grupo restrito, como um centro acadêmico ou evento de extensão. Isso garante uma carga prévia de conteúdo ("efeito rede") antes de divulgar o link para todo o campus.
+	Segurança
+	Vulnerabilidades e vazamento de dados de localização dos usuários.
+	Baixa
+	Alto
+	Restringir o acesso via autenticação obrigatória com criptografia de senhas (RNF09, RNF10). Assegurar que as coordenadas ancoradas no banco correspondam apenas aos blocos físicos do campus, nunca rastreando a localização em tempo real do dispositivo, e forçar o uso de HTTPS (RNF11).
+	Moderação
+	Upload de conteúdo impróprio ou violação de direitos autorais.
+	Média
+	Médio
+	Estabelecer termos de diretrizes de comunidade claros (RC08). Criar regras restritas no sistema garantindo que apenas administradores possam apagar conteúdos gerais (RF23) ou bloquear contas infratoras (RF04).
+	Infraestrutura
+	Perda de dados do banco de dados (comprometendo a memória institucional).
+	Baixa
+	Crítico
+	Configurar rotinas automáticas de backup (RNF12) no provedor PostgreSQL escolhido. Manter os dados essenciais de homologação documentados fora da nuvem primária para restauração rápida em caso de queda do servidor.
+	Interface
+	Incompatibilidade de UI/UX em diferentes dispositivos móveis (Falha no RNF02).
+	Média
+	Médio
+	Adotar a mentalidade Mobile First durante a prototipação dos componentes no Figma e realizar testes manuais constantes em diferentes proporções de tela e navegadores ao final de cada Sprint.
+	3.3 Análise Crítica de IA na Gerência do Projeto
+Durante a estruturação da Fase 3 (Gerência do Projeto), a Inteligência Artificial (especificamente o Deepseek) foi utilizada como um assistente de planejamento e análise preditiva. O uso da ferramenta focou em otimizar a criação do cronograma ágil e mapear potenciais vulnerabilidades do escopo técnico.
+Para a construção do cronograma e definição dos Sprints, a IA foi utilizada para sugerir uma distribuição lógica de tarefas em um período curto. O prompt utilizado foi: "Atue como um Scrum Master. Tenho um projeto acadêmico de 10 semanas para criar uma rede social com geolocalização (React, Node, PostgreSQL). Divida o esforço em 5 Sprints de 2 semanas, listando as dependências lógicas entre frontend, backend e mapas." A resposta da IA serviu como um esqueleto estrutural. No entanto, a equipe realizou uma análise crítica e intervenção humana para adequar o resultado à realidade do grupo: a IA havia sugerido a implementação de testes automatizados E2E (End-to-End) que, embora sejam boas práticas de mercado, inviabilizariam a entrega do MVP dentro do calendário. A equipe optou por focar os testes em validações manuais via Postman para os endpoints críticos (autenticação e geolocalização).
+Na etapa de levantamento de ferramentas e análise de riscos, a IA foi consultada sobre os gargalos comuns de aplicações que lidam com upload de mídia. O modelo de linguagem alertou fortemente para os custos de infraestrutura em nuvem. A partir desse alerta, a equipe tomou a decisão arquitetural de incluir requisitos não funcionais de compressão automática de imagem (RNF08) e optou pela utilização estrita de free-tiers (Vercel, Render), descartando as sugestões iniciais da IA de usar serviços robustos e pagos como AWS EC2, que não condizem com o modelo de negócios sem fins lucrativos do Timelens.
+Dessa forma, o uso da IA nesta fase manteve-se consultivo, acelerando a identificação de "pontos cegos" de gerenciamento, mas com todas as decisões de escopo e arquitetura sendo ativamente filtradas e validadas pelos alunos.
+
+
+4. Projeto da Aplicação Web
+4.1 Projeto da Informação
+4.1.1 Arquitetura da Informação
+A arquitetura da informação do Timelens foi projetada para organizar o acervo histórico da UFMT de maneira intuitiva, facilitando a descoberta de conteúdos por usuários de diferentes perfis. O sistema está dividido em três blocos principais de informação:
+* Conteúdo Principal: O núcleo da aplicação é o "Mapa Interativo do Campus", que atua como a página inicial (Home) e portal de descoberta. A partir dele, os usuários acessam as "Linhas do Tempo", que organizam cronologicamente as memórias de um local ou coletivo específico. Há também a seção de "Perfis de Usuários", que centraliza as postagens e metadados de cada membro.
+* Serviços: A plataforma oferece serviços interativos como o módulo de upload georreferenciado de mídia, um motor de busca textual e filtragem (por tags de relevância social e períodos temporais) e um sistema de engajamento assíncrono (curtidas e comentários).
+* Recursos de Ajuda: Para orientar a comunidade, o sistema contará com uma página de "Diretrizes da Comunidade", detalhando as regras de convivência, moderação e proteção contra discursos de ódio. Além disso, haverá um fluxo de tutorial explicando o funcionamento da rede para novos usuários.
+
+
+4.1.2 Sistema de Gerenciamento de Conteúdo 
+Como o Timelens baseia-se em conteúdo gerado pelo próprio usuário, a plataforma não utilizará um sistema de gerenciamento de conteúdo tradicional de mercado (como WordPress). O gerenciamento será feito através de um painel administrativo customizado. Esse painel  será de acesso exclusivo dos administradores do sistema e terá como função principal a moderação ativa. Através dele, será possível gerenciar denúncias, excluir comentários que violem as diretrizes e aplicar suspensões ou bloqueios a contas infratoras, garantindo um ambiente digital seguro. 
+4.1.3 Arquitetura de Conteúdo 
+A plataforma adota uma estrutura híbrida, mesclando navegação hierárquica e em rede. A jornada principal (hierárquica) parte de uma visão macro no Mapa Interativo do Campus (página inicial) para uma visão micro: o usuário clica em um bloco específico, acessa a linha do tempo daquele local e, por fim, abre uma postagem detalhada. Paralelamente, a navegação em rede ocorre através das tags temáticas (como #Ciencia ou #IniciativasFemininas), permitindo saltar livremente entre memórias de diferentes locais que compartilhem a mesma pauta. Além dessa exploração, a estrutura abriga as áreas de perfil dos usuários, o módulo de busca textual e as páginas de suporte, que incluem as diretrizes da comunidade e o tutorial.
+
+
+  
+
+
+
+4.1.4 Etapas de Preparação e Tecnologia 
+O preparo do conteúdo é descentralizado. O usuário insere a foto, o relato histórico e a localização. A edição técnica é automatizada pelo backend do sistema, que realiza a compressão padronizada das imagens durante o upload para otimizar o tempo de carregamento e o armazenamento.
+A distribuição do conteúdo para fora da rede ocorrerá através da geração de links únicos compartilháveis para cada marco histórico, permitindo que as cápsulas do tempo sejam divulgadas no WhatsApp, Instagram ou LinkedIn dos usuários.
+Para suportar essa dinâmica, a arquitetura separará os dados transacionais (textos, senhas, coordenadas geográficas) — armazenados em um banco de dados relacional com extensão geoespacial — dos arquivos de mídia pesados, que serão alocados em um serviço de armazenamento em nuvem dedicado (Cloud Storage).
+
+
+4.1.5 Padrões de Interface e Identidade Visual 
+A interface do usuário (UI) será desenvolvida em conformidade com a identidade visual da Universidade Federal de Mato Grosso, visando facilitar o reconhecimento e o pertencimento da comunidade. A paleta de cores primária adotará os tons oficiais da instituição, e a tipografia será escolhida prezando pela alta legibilidade acadêmica em dispositivos móveis. Adicionalmente, o frontend seguirá diretrizes básicas de acessibilidade, assegurando contraste adequado de cores e suporte a textos alternativos nas mídias fotográficas. 
+
+
+4.2 Projeto de Navegação
+4.2.1 Descrição da Sintaxe da Navegação
+O Timelens utilizará uma navegação responsiva, adaptando-se a dispositivos móveis e desktops, em conformidade com os requisitos de usabilidade e acessibilidade definidos para o sistema. A estrutura de navegação foi projetada para facilitar o acesso ao acervo histórico da UFMT, combinando navegação hierárquica e navegação em rede, conforme definido na Arquitetura de Conteúdo (Seção 4.1.3).  
+Barra de menu horizontal (Header fixo)
+Após a autenticação, o usuário acessará o núcleo do sistema através de uma barra horizontal fixa localizada no topo da interface, presente em todas as telas internas.
+Essa barra concentrará os principais pontos de acesso às funcionalidades do sistema:
+* Logo Timelens (atalho para a Home/Mapa Interativo)
+* Mapa (Home)
+* Linha do Tempo
+* Buscar (pesquisa textual e filtros)
+* Notificações (ícone de sino com indicador de novas interações)
+* + Nova Memória (botão de ação principal para criação de uma postagem)
+* Perfil (avatar do usuário com menu suspenso)
+No lado direito permanecerão disponíveis:
+* Campo de pesquisa rápida;
+* Avatar do usuário;
+* Menu de configurações e logout.
+Navegação em dispositivos móveis
+Na versão mobile será utilizada uma Bottom Navigation, composta pelos principais módulos da aplicação:
+* Home
+* Mapa
+   * Nova Memória
+* Notificações
+* Perfil
+O campo de busca e os filtros permanecerão posicionados na parte superior da interface para facilitar pesquisas por texto, período e tags.
+Tabulações (Tabs)
+As abas serão utilizadas para organizar conteúdos relacionados sem exigir nova navegação hierárquica.
+Perfil do Usuário
+* Postagens
+* Sobre/Biografia
+* Marcos Históricos
+* Curtidas
+Linha do Tempo
+* Cronológico
+* Por Tags
+* Eventos
+* Projetos
+* Coletivos
+Postagem
+* Conteúdo
+* Comentários
+Painel Administrativo
+* Gestão de Usuários
+* Moderação de Conteúdo
+* Denúncias
+Navegação vertical (Sidebar)
+A navegação lateral será utilizada exclusivamente no Painel Administrativo, acessível apenas aos administradores do sistema.
+A sidebar reunirá os módulos de:
+* Gestão de usuários;
+* Moderação de conteúdo;
+* Gerenciamento de denúncias;
+* Configurações administrativas.
+Essa organização reduz a complexidade da interface para usuários comuns e facilita o gerenciamento das funções administrativas.
+Breadcrumbs (Trilha de Navegação)
+Como o Timelens combina navegação hierárquica e em rede, será utilizada uma trilha de navegação (Breadcrumb) para indicar continuamente a posição atual do usuário dentro do sistema.
+Exemplo:
+Mapa > Bloco IE > Linha do Tempo > Postagem #1284
+Essa funcionalidade melhora a orientação do usuário e facilita o retorno aos níveis anteriores da navegação.
+Links individuais
+Cada postagem apresentará diversos pontos de navegação contextual:
+* Perfil do autor;
+* Local correspondente no mapa;
+* Linha do tempo relacionada;
+* Tags temáticas;
+* Compartilhamento da postagem;
+* Seção de comentários.
+Também existirão links específicos para:
+* Tags clicáveis (#Ciência, #IniciativasFemininas);
+* Nome ou foto do autor;
+* Menções (@usuário) nos comentários;
+* Botão “Ver Linha do Tempo Completa”;
+* Compartilhamento através de link único;
+* Rodapé contendo:
+   * Diretrizes da Comunidade;
+   * Tutorial;
+   * Sobre o Timelens.
+Esses links permitem ao usuário alternar entre a navegação hierárquica e a navegação em rede, característica central da arquitetura da aplicação.
+4.2.2 Definição da Semântica de Navegação
+Os rótulos foram definidos para utilizar linguagem simples, intuitiva e coerente com a proposta do Timelens como uma cápsula do tempo digital da UFMT.
+Rótulo
+	Função
+	Justificativa
+	Mapa
+	Exibe o mapa interativo do campus e funciona como página inicial.
+	Reforça a metáfora espacial que organiza o conteúdo do sistema.
+	Linha do Tempo
+	Exibe registros históricos organizados cronologicamente por local ou tag.
+	Representa o principal conceito da aplicação.
+	Buscar
+	Permite pesquisas textuais e aplicação de filtros por período e tags.
+	Nome objetivo e facilmente compreendido pelos usuários.
+	+ Nova Memória
+	Abre o formulário para criação de uma nova postagem.
+	Reforça o conceito de preservação da memória institucional, substituindo termos genéricos como “Postar”.
+	Notificações
+	Exibe curtidas, comentários, menções e alertas de proximidade.
+	Utiliza um padrão consolidado em aplicações web.
+	Perfil
+	Permite acessar dados pessoais, biografia, configurações e publicações do usuário.
+	Terminologia amplamente utilizada em redes sociais.
+	Diretrizes da Comunidade
+	Exibe regras de convivência e políticas de moderação.
+	Linguagem mais acolhedora do que “Termos de Uso”.
+	Tutorial
+	Apresenta instruções para novos usuários.
+	Facilita o aprendizado inicial da plataforma.
+	Administração
+	Área exclusiva para gerenciamento de usuários, denúncias e conteúdos.
+	Representa claramente o acesso restrito aos administradores.
+	Sair
+	Encerra a sessão do usuário.
+	Convenção amplamente utilizada em aplicações web.
+	Breadcrumb
+	Indica a posição atual dentro da navegação espaço-temporal.
+	Auxilia na orientação durante a navegação entre mapa, linhas do tempo e postagens.
+	De forma geral, a semântica da navegação prioriza termos que reforçam a identidade do sistema, como Memória, Linha do Tempo e Mapa, mantendo coerência com a proposta apresentada na definição da ferramenta e reduzindo o uso de terminologias genéricas típicas de redes sociais.
+4.2.3 Mapa de Navegação
+TELA DE AUTENTICAÇÃO
+│
+├── Login
+└── Cadastro
+      │
+      ▼
+┌──────────────────────────────────────────────────────────────────────┐
+│ HEADER FIXO                                                          │
+│ Logo │ Mapa │ Linha do Tempo │ Buscar │ + Nova Memória │ 🔔 │ Perfil │
+└──────────────────────────────────────────────────────────────────────┘
+      │
+      ▼
+HOME / MAPA INTERATIVO
+│
+├── Buscar
+│     ├── Busca textual
+│     ├── Tags
+│     ├── Filtro por período
+│     └── Resultados
+│
+├── Mapa Interativo
+│     │
+│     └── Local do Campus
+│             │
+│             └── Linha do Tempo
+│                     ├── Cronológico
+│                     ├── Por Tags
+│                     ├── Eventos
+│                     ├── Projetos
+│                     └── Coletivos
+│                             │
+│                             ▼
+│                     Postagem Expandida
+│                     ├── Foto
+│                     ├── Texto
+│                     ├── Comentários
+│                     ├── Curtidas
+│                     ├── Compartilhar
+│                     ├── Perfil do Autor
+│                     ├── Tags
+│                     └── Ver Linha do Tempo Completa
+│
+├── + Nova Memória
+│     ├── Upload de Imagem
+│     ├── Texto
+│     ├── Localização
+│     ├── Data
+│     └── Tags
+│
+├── Notificações
+│
+├── Perfil
+│     ├── Postagens
+│     ├── Sobre/Biografia
+│     ├── Marcos Históricos
+│     ├── Curtidas
+│     ├── Configurações
+│     └── Sair
+│
+├── Diretrizes da Comunidade
+│
+└── Tutorial
+Navegação em Rede
+A partir da tela de uma postagem, o usuário poderá navegar diretamente para:
+* Linha do Tempo por Tag;
+* Perfil do Autor;
+* Perfil de usuários mencionados nos comentários;
+* Compartilhamento por link único.
+Esses elementos permitem que a navegação ocorra entre conteúdos relacionados sem necessidade de retornar à página inicial.
+Painel Administrativo
+PAINEL ADMINISTRATIVO
+│
+├── Gestão de Usuários
+│     ├── Bloquear usuário
+│     ├── Suspender usuário
+│     └── Editar permissões
+│
+├── Moderação de Conteúdo
+│     ├── Excluir comentários
+│     ├── Excluir postagens
+│     └── Revisar denúncias
+│
+└── Configurações Administrativas
+Legenda
+* Setas verticais (↓): representam a navegação hierárquica (Mapa → Local → Linha do Tempo → Postagem).
+* Tags, autores, menções e compartilhamentos: representam a navegação em rede, permitindo ao usuário acessar conteúdos relacionados diretamente.
+* Painel Administrativo: constitui uma subestrutura isolada, acessível apenas a usuários com perfil de administrador, conforme os requisitos funcionais do sistema.
+5. Projeto de Interação (Estético e Interface)
+Este capítulo detalha o Projeto de Interação do Timelens, abrangendo a especificação das tarefas dos usuários, a descrição das interfaces do sistema, o repertório de mensagens e as decisões de projeto estético que guiarão o desenvolvimento visual da plataforma.
+5.1 Especificação das Tarefas
+As tarefas foram identificadas a partir das principais jornadas do usuário, levando em conta a estrutura de navegação definida na Seção 4.2. Cada tarefa representa um objetivo concreto que o usuário busca atingir ao interagir com o sistema.
+Tarefa
+	Nome
+	Descrição
+	T01
+	Autenticação
+	Realizar cadastro ou login na plataforma para acessar o conteúdo e as funcionalidades do sistema.
+	T02
+	Exploração do Mapa
+	Navegar pelo mapa interativo do Campus Cuiabá para descobrir locais e marcos históricos georreferenciados.
+	T03
+	Exploração da Linha do Tempo
+	Acessar, a partir de um local no mapa, a linha do tempo daquele ponto e navegar pelas abas Cronológico, Por Tags, Eventos, Projetos e Coletivos.
+	T04
+	Visualização de Postagem
+	Abrir uma postagem expandida a partir da linha do tempo ou do mapa, navegando pelas abas Conteúdo e Comentários.
+	T05
+	Criação de Nova Memória
+	Publicar um marco histórico georreferenciado com fotografia, relato textual, data do evento, localização e tags temáticas.
+	T06
+	Busca e Filtragem
+	Localizar memórias por texto livre, tags temáticas ou recorte temporal por meio da funcionalidade Buscar.
+	T07
+	Interação com Postagens
+	Curtir, comentar e mencionar outros usuários em uma postagem, além de compartilhá-la por link único.
+	T08
+	Gerenciamento de Perfil
+	Acessar e editar o próprio perfil navegando pelas abas Postagens, Sobre/Biografia, Marcos Históricos e Curtidas.
+	T09
+	Recebimento de Notificações
+	Visualizar alertas de curtidas, comentários, menções e notificações de proximidade física a marcos históricos.
+	T10
+	Moderação (Administrador)
+	Gerenciar usuários, moderar conteúdos e revisar denúncias por meio do Painel Administrativo com navegação lateral (sidebar).
+	5.2 Descrição das Interfaces
+As interfaces foram estruturadas a partir da sintaxe de navegação definida na Seção 4.2. O sistema adota navegação responsiva: em desktop, um header fixo concentra todos os destinos principais; em mobile, uma barra de navegação inferior (bottom navigation) organiza os módulos centrais. Breadcrumbs acompanham o usuário ao longo da navegação hierárquica, e abas (tabs) organizam conteúdos relacionados sem exigir nova hierarquia de navegação.
+5.2.1 Tela de Autenticação
+Ponto de entrada do sistema, anterior à exibição do header fixo. A tela é dividida em duas rotas: Login, com campos de e-mail e senha, e Cadastro, com campos de nome, e-mail institucional e senha. O formulário valida em tempo real o domínio do e-mail e exibe mensagens de erro contextuais abaixo de cada campo. Após a autenticação bem-sucedida, o usuário é redirecionado diretamente à tela de Home (Mapa Interativo).
+5.2.2 Home — Mapa Interativo do Campus
+Tela principal do sistema, acessada pelo atalho "Mapa" no header e pelo item "Home" na bottom navigation mobile. Exibe o mapa do Campus Cuiabá renderizado com Leaflet.js sobre OpenStreetMap, com marcadores agrupados representando os marcos históricos cadastrados. O usuário pode realizar pinch-to-zoom e tocar em um marcador para acessar a linha do tempo daquele local. Uma barra de busca rápida está sobreposta ao topo do mapa. O botão "+ Nova Memória" no header inicia o fluxo de criação de postagem. Um breadcrumb no topo da tela indica a posição atual: "Mapa".
+5.2.3 Linha do Tempo
+Acessada ao selecionar um local no mapa, com breadcrumb: Mapa > [Nome do Local] > Linha do Tempo. O conteúdo é organizado por cinco abas: Cronológico (todos os marcos em ordem temporal), Por Tags (filtro visual por tag temática), Eventos, Projetos e Coletivos. O carregamento utiliza infinite scroll. Cada item exibe miniatura da imagem, título do marco, data histórica do evento e indicadores de engajamento. Um seletor de período no topo permite filtrar por intervalos de anos.
+5.2.4 Postagem Expandida
+Exibida ao selecionar um item da linha do tempo, com breadcrumb: Mapa > [Local] > Linha do Tempo > [Título da Postagem]. O conteúdo é distribuído em duas abas: Conteúdo — apresenta a fotografia em destaque, o relato histórico, metadados de autoria, data do evento, localização e tags clicáveis; Comentários — seção com rolagem infinita, campo de entrada de novo comentário e suporte a menções de outros usuários. Indicadores de curtidas e um botão de compartilhamento por link único ficam visíveis em ambas as abas.
+5.2.5 Nova Memória
+Formulário de criação de postagem, acionado pelo botão "+ Nova Memória" no header (desktop) ou na bottom navigation (mobile). O fluxo é dividido em três etapas sequenciais: Mídia — seleção ou captura da fotografia; Conteúdo — campos de título, relato histórico, data do evento e tags temáticas; Localização — mapa compacto para ancoragem geográfica da memória ao local correspondente no campus. O sistema exibe feedback visual de progresso entre as etapas e comprime a imagem automaticamente no envio.
+5.2.6 Busca e Filtros
+Acessada pelo item "Buscar" no header ou pela barra de busca rápida sobreposta ao mapa. Oferece três mecanismos de filtragem combinável: busca textual por título ou relato, filtro por tags temáticas clicáveis e filtro por período temporal (intervalo de anos). Os resultados são exibidos em lista com infinite scroll, mostrando miniatura, título e data do evento de cada memória. O breadcrumb indica "Buscar > [Termo pesquisado]".
+5.2.7 Perfil do Usuário
+Exibe foto de perfil, nome, curso e vínculo institucional. O conteúdo é organizado em quatro abas: Postagens — galeria em grade das memórias publicadas; Sobre/Biografia — texto livre e informações pessoais; Marcos Históricos — memórias nas quais o usuário foi mencionado ou participou; Curtidas — postagens curtidas pelo usuário. O próprio usuário acessa a edição dos dados pelo ícone de configurações. Administradores visualizam opções adicionais de moderação diretamente no perfil de terceiros.
+5.2.8 Notificações
+Acessada pelo ícone de sino no header (desktop) ou pelo item correspondente na bottom navigation (mobile), com indicador visual de novas interações. Lista as notificações em ordem cronológica inversa, incluindo: curtidas e comentários nas próprias postagens, menções em comentários de terceiros e alertas de proximidade física a marcos históricos cadastrados. Cada notificação é clicável e redireciona ao contexto correspondente.
+5.2.9 Painel Administrativo
+Subestrutura isolada, acessível apenas a administradores pelo item "Administração" no menu suspenso do Perfil. Utiliza navegação lateral (sidebar) com quatro módulos: Gestão de Usuários — bloqueio, suspensão e edição de permissões; Moderação de Conteúdo — exclusão de postagens e comentários; Denúncias — revisão de conteúdos denunciados pela comunidade; Configurações Administrativas. Cada módulo é também organizado por abas internas conforme definido na Seção 4.2.
+5.3 Relatório das Mensagens
+As mensagens do sistema foram categorizadas por função comunicativa. A linguagem adota tom próximo e direto, adequado ao público jovem acadêmico da plataforma, evitando termos técnicos e garantindo clareza de contexto em qualquer ponto da navegação.
+Categoria
+	Mensagem
+	Confirmação
+	"Memória publicada! Ela já está visível na linha do tempo."
+	Confirmação
+	"Perfil atualizado com sucesso."
+	Confirmação
+	"Comentário apagado."
+	Confirmação
+	"Memória removida da sua linha do tempo."
+	Erro de formulário
+	"Use seu e-mail institucional (@ufmt.edu.br ou @aluno.ufmt.br) para continuar."
+	Erro de formulário
+	"A imagem ultrapassa o tamanho máximo. Tente uma foto menor."
+	Erro de formulário
+	"Selecione ao menos um local no mapa para publicar sua memória."
+	Erro de formulário
+	"O título da memória não pode ficar em branco."
+	Erro de sistema
+	"Não foi possível carregar o mapa. Verifique sua conexão e tente novamente."
+	Erro de sistema
+	"Falha ao enviar a memória. Tente novamente em instantes."
+	Alerta de ação irreversível
+	"Tem certeza que deseja excluir esta memória? Esta ação não pode ser desfeita."
+	Alerta de ação irreversível
+	"Você está prestes a encerrar sua conta. Todos os dados serão removidos permanentemente."
+	Notificação
+	"[Nome] curtiu sua memória '[Título]'."
+	Notificação
+	"[Nome] comentou em sua memória: '[Trecho]'."
+	Notificação
+	"[Nome] mencionou você em um comentário."
+	Notificação
+	"Você está próximo de um marco histórico: '[Título]'. Toque para ver."
+	Carregamento
+	"Carregando linha do tempo..."
+	Carregamento
+	"Processando imagem..."
+	Estado vazio
+	"Nenhuma memória registrada aqui ainda. Que tal ser o primeiro?"
+	Estado vazio
+	"Você ainda não curtiu nenhuma memória."
+	5.4 Projeto Estético
+O projeto estético do Timelens foi definido a partir das imagens de referência fornecidas e adaptado à identidade da plataforma como um memorial colaborativo universitário. As decisões priorizam um ambiente imersivo e de alta legibilidade para contexto mobile, mantendo consistência visual entre desktop e mobile.
+5.4.1 Família Tipográfica
+A família tipográfica adotada é a Syne, disponível gratuitamente no Google Fonts. Sua personalidade geométrica e contemporânea comunica modernidade sem abrir mão da seriedade acadêmica, sendo adequada tanto para títulos de impacto quanto para leituras extensas de relatos históricos.
+* Syne Bold (700): nome da plataforma, títulos de postagens, headings de seção e chamadas de ação principais.
+* Syne Medium (500): rótulos de botões, tags temáticas, itens da navegação (header e bottom nav) e rótulos de abas.
+* Syne Regular (400): corpo de texto, relatos históricos, comentários, metadados e breadcrumbs.
+Tamanho base do body: 16 px. Headings escalam entre 20 px e 28 px conforme hierarquia. Altura de linha padrão: 1.6 para corpo de texto, garantindo legibilidade em relatos históricos extensos.
+5.4.2 Paleta de Cores
+O sistema visual adota o tema escuro (dark mode) como padrão, alinhado à proposta imersiva das imagens de referência e ao consumo noturno típico de aplicativos sociais. A paleta foi extraída diretamente dos materiais de referência e atribuída a funções semânticas específicas da interface.
+Função
+	Uso na Interface
+	Valor HEX
+	Background Principal
+	Base de todas as telas, fundos de mapa e modais.
+	#0D0D0D
+	Surface / Cards
+	Cartões de postagem, abas e componentes sobrepostos ao fundo.
+	#1A1A1A
+	Header / Bottom Nav
+	Fundo das barras de navegação fixas para destacá-las do conteúdo.
+	#111111
+	Destaque Primário (Rosa)
+	Cor da identidade da marca: botões CTA, tags ativas, ícones de ação principais e indicadores de aba selecionada.
+	#F4A6E8
+	Destaque Secundário (Pêssego)
+	Gradientes, ícones secundários, hover states e breadcrumb ativo.
+	#F4A870
+	Alerta / Ação Destrutiva (Salmão)
+	Botões de exclusão, alertas críticos e mensagens de erro de sistema.
+	#F47870
+	Texto Principal
+	Títulos, relatos e rótulos primários sobre fundo escuro.
+	#FFFFFF
+	Texto Secundário
+	Metadados, timestamps, placeholders e breadcrumbs em repouso.
+	#FFFFFF99
+	Separadores
+	Bordas entre cards, linhas divisórias de abas e dividers de lista.
+	#FFFFFF1A
+	5.4.3 Iconografia
+Os ícones seguem o estilo outline linear com traço de espessura uniforme de 1.5 px e cantos arredondados, consistente com o tema escuro e com a personalidade da tipografia Syne. A biblioteca adotada é Lucide Icons (open source, licença MIT). Os ícones cobrem os seguintes grupos funcionais:
+* Navegação: ícone de mapa (Home/Mapa), relógio ou espiral (Linha do Tempo), lupa (Buscar), sino (Notificações) e avatar (Perfil).
+* Ações de postagem: câmera (upload), marcador de localização (ancoragem), tag (categorias), coração (curtir), balão de fala (comentar), seta de compartilhamento (compartilhar).
+* Breadcrumb: chevron ( > ) separando os níveis da trilha de navegação.
+* Status e moderação: escudo (administrador), X (fechar/excluir), check (confirmação), triângulo de alerta (erro crítico).
+O tamanho padrão dos ícones é 24 px no header e bottom navigation, e 20 px em contextos internos de card e abas.
+5.4.4 Layout e Grid
+O layout segue Mobile First com as seguintes diretrizes:
+* Grid mobile (390 px): 4 colunas com gutter de 16 px e padding lateral de 16 px. Grid desktop (1280 px+): 12 colunas com gutter de 24 px e padding lateral de 40 px.
+* Header fixo (desktop): 64 px de altura; logo à esquerda, itens de navegação centralizados, campo de busca rápida e avatar à direita.
+* Bottom navigation (mobile): 56 px de altura com cinco destinos — Home, Mapa, + Nova Memória (botão central destacado em rosa), Notificações e Perfil.
+* Breadcrumbs: posicionados imediatamente abaixo do header, em texto Syne Regular 13 px, cor Texto Secundário, com chevron separando os níveis.
+* Abas (tabs): barra horizontal logo abaixo do breadcrumb ou do cabeçalho da seção, com indicador de aba ativa em rosa (#F4A6E8) e fundo Surface (#1A1A1A).
+* Border radius: 16 px para cards de postagem e painéis; 24 px para modais e bottom sheets; 999 px (pill) para botões de ação e tags temáticas.
+* Imagens de postagem: proporção 4:3 nos cards de lista da linha do tempo e 16:9 na postagem expandida.
+* Espaçamento vertical entre seções: 24 px; entre componentes internos de um card: 12 px; entre itens de lista: 8 px.
