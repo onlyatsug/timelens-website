@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
-import { Heart, MessageCircle, Share2, MapPin, Calendar, Trash2, Send, ArrowLeft } from 'lucide-react';
-// Importe as funções da sua API
+import { Heart, MessageCircle, Share2, MapPin, Calendar, Trash2, Send, ArrowLeft, X } from 'lucide-react';
+//funções da API
 import { 
   getPostById, 
   getLocationById, 
@@ -26,15 +26,15 @@ const TAG_COLORS = ['#F4A6E8', '#F4A870', '#A6E8F4', '#A6F4A8', '#E8A6F4'];
 export function PostExpanded() {
   const { postId } = useParams();
   const navigate = useNavigate();
-  // Removemos posts, comments e funções manipuladoras do context, pois agora são via API
   const { currentUser } = useApp();
   
   const [activeTab, setActiveTab] = useState<'conteudo' | 'comentarios'>('conteudo');
   const [commentText, setCommentText] = useState('');
   const [copied, setCopied] = useState(false);
+  const [showImageModal, setShowImageModal] = useState(false);
   const commentInputRef = useRef<HTMLInputElement>(null);
 
-  // Estados da API
+  // estados da API
   const [post, setPost] = useState<Post | null>(null);
   const [location, setLocation] = useState<CampusLocation | null>(null);
   const [author, setAuthor] = useState<User | null>(null);
@@ -42,7 +42,7 @@ export function PostExpanded() {
   const [usersCache, setUsersCache] = useState<Record<string, User>>({});
   const [loading, setLoading] = useState(true);
 
-  // Foca no input se a URL tiver #comments
+  // foca no input se a URL tiver #comments
   useEffect(() => {
     if (window.location.hash === '#comments') {
       setActiveTab('comentarios');
@@ -50,7 +50,17 @@ export function PostExpanded() {
     }
   }, []);
 
-  // Busca os dados da memória
+  // fecha o modal de imagem com ESC
+  useEffect(() => {
+    if (!showImageModal) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setShowImageModal(false);
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [showImageModal]);
+
+  // busca os dados da memória
   useEffect(() => {
     if (!postId) return;
 
@@ -62,7 +72,6 @@ export function PostExpanded() {
         if (fetchedPost) {
           setPost(fetchedPost);
 
-          // Busca dados dependentes em paralelo
           const [fetchedLoc, fetchedAuthor, fetchedComments] = await Promise.all([
             getLocationById(fetchedPost.locationId),
             getUserById(fetchedPost.authorId),
@@ -73,7 +82,6 @@ export function PostExpanded() {
           setAuthor(fetchedAuthor || null);
           setPostComments(fetchedComments);
 
-          // Cache de usuários dos comentários
           const authorIds = Array.from(new Set(fetchedComments.map(c => c.authorId)));
           const usersData = await Promise.all(authorIds.map(id => getUserById(id)));
           
@@ -93,13 +101,11 @@ export function PostExpanded() {
     loadData();
   }, [postId]);
 
-  // Ações com API (Optimistic Updates)
   const handleLike = async () => {
     if (!currentUser || !post) return;
     
     const isLiked = post.likedBy.includes(currentUser.id);
 
-    // Atualiza estado local instantaneamente
     setPost({
       ...post,
       likes: isLiked ? post.likes - 1 : post.likes + 1,
@@ -120,15 +126,12 @@ export function PostExpanded() {
     if (!commentText.trim() || !post || !currentUser) return;
     
     const text = commentText;
-    setCommentText(''); // Limpa o input imediatamente
+    setCommentText('');
 
     try {
       const newComment = await createComment(post.id, currentUser.id, text);
-      
-      // Adiciona ao estado local
       setPostComments(prev => [...prev, newComment]);
       
-      // Garante que o currentUser esteja no cache para renderizar o avatar
       if (!usersCache[currentUser.id]) {
         setUsersCache(prev => ({ ...prev, [currentUser.id]: currentUser }));
       }
@@ -138,7 +141,6 @@ export function PostExpanded() {
   };
 
   const handleDeleteComment = async (commentId: string) => {
-    // Remove do estado local instantaneamente
     setPostComments(prev => prev.filter(c => c.id !== commentId));
     
     try {
@@ -184,7 +186,7 @@ export function PostExpanded() {
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#0D0D0D' }}>
       <div className="max-w-2xl mx-auto px-4 pt-4 pb-10">
-        {/* Mobile back button */}
+        {/* mobile back button */}
         <button onClick={() => navigate(-1)} className="flex md:hidden items-center gap-2 mb-3 transition-colors hover:text-white"
           style={{ color: 'rgba(255,255,255,0.5)' }}>
           <ArrowLeft size={18} />
@@ -195,14 +197,22 @@ export function PostExpanded() {
           <Breadcrumb items={breadcrumbItems} />
         </div>
 
-        {/* Hero image (16:9) */}
-        <div className="rounded-2xl overflow-hidden mb-5 relative" style={{ aspectRatio: '16/9' }}>
-          <ImageWithFallback src={post.image} alt={post.title} className="w-full h-full object-cover" />
+        {/* hero image */}
+        <div
+          className="rounded-2xl overflow-hidden mb-5 relative flex items-center justify-center cursor-pointer group"
+          style={{ aspectRatio: '16/9', backgroundColor: '#000' }}
+          onClick={() => setShowImageModal(true)}
+        >
+          <ImageWithFallback
+            src={post.image}
+            alt={post.title}
+            className="w-full h-full object-contain transition-transform duration-200 group-hover:scale-[1.02]"
+          />
           <div className="absolute inset-0 pointer-events-none"
             style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%)' }} />
 
-          {/* Engagement overlay */}
-          <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+          {/* engagement overlay */}
+          <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between" onClick={(e) => e.stopPropagation()}>
             <button onClick={handleLike}
               className="flex items-center gap-2 px-3 py-1.5 rounded-full transition-all hover:scale-105"
               style={{ backgroundColor: 'rgba(0,0,0,0.6)', backdropFilter: 'blur(8px)', color: liked ? '#F4A6E8' : 'white' }}>
@@ -226,9 +236,9 @@ export function PostExpanded() {
           </div>
         </div>
 
-        {/* Card */}
+        {/* card */}
         <div className="rounded-2xl overflow-hidden" style={{ backgroundColor: '#1A1A1A', border: '1px solid rgba(255,255,255,0.08)' }}>
-          {/* Tabs */}
+          {/* tabs */}
           <div className="flex border-b" style={{ borderColor: 'rgba(255,255,255,0.08)' }}>
             {(['conteudo', 'comentarios'] as const).map(tab => (
               <button key={tab} onClick={() => setActiveTab(tab)}
@@ -249,7 +259,6 @@ export function PostExpanded() {
                 {post.title}
               </h1>
 
-              {/* Meta */}
               <div className="flex flex-wrap items-center gap-x-4 gap-y-2 mb-4">
                 {author && (
                   <button onClick={() => navigate(`/app/profile/${author.id}`)}
@@ -275,7 +284,6 @@ export function PostExpanded() {
                 {post.content}
               </p>
 
-              {/* Tags */}
               <div className="flex flex-wrap gap-2">
                 {post.tags.map((tag, i) => (
                   <button key={tag}
@@ -289,7 +297,6 @@ export function PostExpanded() {
             </div>
           ) : (
             <div className="flex flex-col">
-              {/* Comment input */}
               <form onSubmit={handleSubmitComment}
                 className="flex items-center gap-3 p-4 border-b" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
                 {currentUser && (
@@ -311,7 +318,6 @@ export function PostExpanded() {
                 </button>
               </form>
 
-              {/* Comments list */}
               <div className="divide-y" style={{ divideColor: 'rgba(255,255,255,0.04)' }}>
                 {postComments.length === 0 ? (
                   <div className="text-center py-10">
@@ -320,7 +326,6 @@ export function PostExpanded() {
                   </div>
                 ) : (
                   postComments.map(comment => {
-                    // Busca o usuário do cache (fallback se algo der errado)
                     const commentAuthor = usersCache[comment.authorId] || { name: 'Usuário', avatar: 'https://via.placeholder.com/100', id: comment.authorId };
                     const canDelete = currentUser?.id === comment.authorId || currentUser?.role === 'admin';
                     const contentWithMentions = comment.content.replace(/@(\S+)/g, (_, name) => `<span style="color:#F4A6E8">@${name}</span>`);
@@ -360,7 +365,6 @@ export function PostExpanded() {
           )}
         </div>
 
-        {/* View full timeline */}
         {location && (
           <button onClick={() => navigate(`/app/timeline/${location.id}`)}
             className="mt-4 w-full py-3 rounded-2xl text-sm font-medium transition-colors hover:opacity-80"
@@ -369,6 +373,29 @@ export function PostExpanded() {
           </button>
         )}
       </div>
+
+      {/* modal de imagem em tamanho completo */}
+      {showImageModal && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          style={{ backgroundColor: 'rgba(0,0,0,0.92)' }}
+          onClick={() => setShowImageModal(false)}
+        >
+          <button
+            onClick={() => setShowImageModal(false)}
+            className="absolute top-4 right-4 w-10 h-10 rounded-full flex items-center justify-center transition-colors hover:opacity-80"
+            style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: 'white' }}
+          >
+            <X size={20} />
+          </button>
+          <img
+            src={post.image}
+            alt={post.title}
+            className="max-w-full max-h-full object-contain rounded-lg"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { Heart, MessageCircle, Share2, MapPin, Calendar, Filter } from 'lucide-react';
-// Importe as funções e tipagens da sua API
+// funções e tipagens da API
 import { 
   getPosts, 
   getPostsByLocation, 
@@ -38,18 +38,18 @@ export function Timeline() {
   const [periodFilter, setPeriodFilter] = useState('');
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
 
-  // Estados para dados da API
+  // estados para dados da API
   const [posts, setPosts] = useState<Post[]>([]);
   const [location, setLocation] = useState<CampusLocation | null>(null);
   const [usersCache, setUsersCache] = useState<Record<string, User>>({});
   const [loading, setLoading] = useState(true);
 
-  // Busca inicial dos dados
+  // busca inicial dos dados
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
       try {
-        // 1. Buscar detalhes do local (se houver ID)
+        // 1. buscar detalhes do local (se houver ID)
         if (locationId) {
           const loc = await getLocationById(locationId);
           setLocation(loc || null);
@@ -57,14 +57,14 @@ export function Timeline() {
           setLocation(null);
         }
 
-        // 2. Buscar posts (do local específico ou globais)
+        // 2. buscar posts (do local específico ou globais)
         const fetchedPosts = locationId 
           ? await getPostsByLocation(locationId) 
           : await getPosts();
         
         setPosts(fetchedPosts);
 
-        // 3. Buscar e fazer cache dos autores dos posts
+        // 3. buscar e fazer cache dos autores dos posts
         const authorIds = Array.from(new Set(fetchedPosts.map(p => p.authorId)));
         const usersData = await Promise.all(authorIds.map(id => getUserById(id)));
         
@@ -84,13 +84,13 @@ export function Timeline() {
     fetchData();
   }, [locationId]);
 
-  // Função para curtir com "Optimistic Update" (atualiza a UI antes da API responder)
+  // função para curtir com "Optimistic Update" (atualiza a UI antes da API responder)
   const handleLike = async (post: Post) => {
     if (!currentUser) return;
     
     const isLiked = post.likedBy.includes(currentUser.id);
 
-    // Atualiza o estado local imediatamente
+    // atualiza o estado local imediatamente
     setPosts(prev => prev.map(p => {
       if (p.id === post.id) {
         return {
@@ -104,16 +104,16 @@ export function Timeline() {
       return p;
     }));
 
-    // Chama a API em background
+    // chama a API em background
     try {
       await toggleLikePost(post.id, currentUser.id);
     } catch (error) {
       console.error("Erro ao curtir post:", error);
-      // Em caso de erro, você poderia reverter o estado aqui se desejado
+      // em caso de erro, você poderia reverter o estado aqui se desejado
     }
   };
 
-  // Filtros aplicados via useMemo para performance
+  // filtros aplicados via useMemo para performance
   const filteredPosts = useMemo(() => {
     let base = posts;
     if (activeTab === 'eventos') base = base.filter(p => p.type === 'event');
@@ -141,7 +141,7 @@ export function Timeline() {
       <div className="max-w-2xl mx-auto px-3 sm:px-4 pt-4">
         <Breadcrumb items={breadcrumbItems} />
 
-        {/* Header */}
+        {/* header */}
         <div className="mt-3 mb-5">
           {location && (
             <div className="flex items-center gap-2 mb-1">
@@ -158,7 +158,7 @@ export function Timeline() {
           )}
         </div>
 
-        {/* Period filter */}
+        {/* period filter */}
         <div className="flex items-center gap-2 mb-4 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
           <div className="flex items-center gap-1 shrink-0">
             <Filter size={14} style={{ color: 'rgba(255,255,255,0.4)' }} />
@@ -187,7 +187,7 @@ export function Timeline() {
           ))}
         </div>
 
-        {/* Tabs */}
+        {/* tabs */}
         <div className="flex gap-1 mb-4 overflow-x-auto pb-1" style={{ scrollbarWidth: 'none' }}>
           {TABS.map(tab => (
             <button key={tab.id} onClick={() => { setActiveTab(tab.id); setSelectedTag(null); }}
@@ -203,7 +203,7 @@ export function Timeline() {
           ))}
         </div>
 
-        {/* Tag filter chips */}
+        {/* tag filter chips */}
         {activeTab === 'tags' && (
           <div className="flex gap-2 flex-wrap mb-4">
             {allTags.map((tag, i) => (
@@ -221,83 +221,85 @@ export function Timeline() {
           </div>
         )}
 
-        {/* Posts list */}
-        <div className="flex pb-8">
+        {/* posts list */}
+        <div className="pb-8">
           {loading ? (
             <div className="text-center py-20 w-full">
               <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 14 }}>Carregando linha do tempo...</p>
             </div>
-          ) : filteredPosts.length === 0 ? (
+          ) : !Array.isArray(filteredPosts) || filteredPosts.length === 0 ? (
             <div className="text-center py-20 w-full">
               <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: 14 }}>Nenhuma memória registrada aqui ainda.</p>
               <p style={{ color: 'rgba(255,255,255,0.2)', fontSize: 13, marginTop: 4 }}>Que tal ser o primeiro?</p>
             </div>
           ) : (
-            <>
-              {/* ── Vertical timeline rail ── */}
-              <div className="flex flex-col items-center shrink-0 relative" style={{ width: 36, marginRight: 12 }}>
-                <div style={{
-                  position: 'absolute',
-                  top: 25,
-                  bottom: 0,
-                  left: '50%',
-                  transform: 'translateX(-50%)',
-                  width: 1,
-                  background: 'linear-gradient(to bottom, rgba(244,166,232,0.4), rgba(244,166,232,0.06))',
-                  zIndex: 0,
-                }} />
 
-                {filteredPosts.map((post) => (
-                  <div key={post.id} className="flex flex-col items-center w-full" style={{ flex: 1, position: 'relative', zIndex: 1 }}>
-                    <div style={{
-                      width: 10, height: 10, borderRadius: '50%',
-                      background: 'linear-gradient(135deg, #F4A6E8, #F4A870)',
-                      border: '2px solid #0D0D0D',
-                      boxShadow: '0 0 0 2px rgba(244,166,232,0.35), 0 0 8px rgba(244,166,232,0.3)',
-                      flexShrink: 0,
-                      marginTop: 20,
-                    }} />
-                  <div
-                    style={{
-                      writingMode: 'vertical-rl',
-                      transform: 'rotate(180deg)',
-                      background: 'linear-gradient(to top, #F4A870, #F4A6E8)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      textShadow: '0 1px 3px rgba(0, 0, 0, 0.35)',
-                      fontSize: 12,
-                      fontWeight: 900,
-                      letterSpacing: 1.1,
-                      marginTop: 8,
-                      marginBottom: 8,
-                      marginRight: 2,
-                      userSelect: 'none',
-                      filter: 'drop-shadow(0 1px 1px rgba(0,0,0,0.6))',
-                    }}
-                  >
-                    {new Date(post.eventDate)
-                      .toLocaleDateString('pt-BR', {
-                        month: 'short',
-                        year: 'numeric',
-                      })
+            <div className="relative flex flex-col gap-6">
+              {/* ── linha guia vertical única de fundo ── */}
+              <div style={{
+                position: 'absolute',
+                top: 20,
+                bottom: 20,
+                left: 18, // metade do espaço do indicador da esquerda (36px / 2)
+                width: 1,
+                background: 'linear-gradient(to bottom, rgba(244,166,232,0.4), rgba(244,166,232,0.06))',
+                zIndex: 0,
+              }} />
+
+              {/* um único mapeamento para garantir alinhamento perfeito de cada linha */}
+              {filteredPosts.map(post => {
+                const author = usersCache[post.authorId];
+                const liked = currentUser ? post.likedBy?.includes(currentUser.id) : false;
+                
+                // conversão e tratamento seguro da data do marcador lateral
+                let formattedSideDate = '';
+                try {
+                  if (post.eventDate) {
+                    formattedSideDate = new Date(post.eventDate)
+                      .toLocaleDateString('pt-BR', { month: 'short', year: 'numeric' })
                       .replace('.', '')
-                      .toLowerCase()}
-                  </div>
-                  </div>
-                ))}
-              </div>
+                      .toLowerCase();
+                  }
+                } catch (e) {
+                  formattedSideDate = '---';
+                }
 
-              {/* ── Post cards ── */}
-              <div className="flex flex-col gap-4 flex-1 min-w-0">
-                {filteredPosts.map(post => {
-                  const author = usersCache[post.authorId];
-                  const liked = currentUser ? post.likedBy.includes(currentUser.id) : false;
-                  
-                  return (
-                    <article key={post.id}
-                      className="rounded-2xl overflow-hidden transition-all duration-200"
+                return (
+                  <div key={post.id} className="flex items-start w-full relative z-10">
+                    
+                    {/* indicador lateral da Linha do Tempo */}
+                    <div className="flex flex-col items-center shrink-0" style={{ width: 36, marginRight: 12 }}>
+                      <div style={{
+                        width: 10, height: 10, borderRadius: '50%',
+                        background: 'linear-gradient(135deg, #F4A6E8, #F4A870)',
+                        border: '2px solid #0D0D0D',
+                        boxShadow: '0 0 0 2px rgba(244,166,232,0.35), 0 0 8px rgba(244,166,232,0.3)',
+                        flexShrink: 0,
+                        marginTop: 20,
+                      }} />
+                      <div style={{
+                        writingMode: 'vertical-rl',
+                        transform: 'rotate(180deg)',
+                        background: 'linear-gradient(to top, #F4A870, #F4A6E8)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        textShadow: '0 1px 3px rgba(0, 0, 0, 0.35)',
+                        fontSize: 12,
+                        fontWeight: 900,
+                        letterSpacing: 1.1,
+                        marginTop: 8,
+                        userSelect: 'none',
+                        filter: 'drop-shadow(0 1px 1px rgba(0,0,0,0.6))',
+                      }}>
+                        {formattedSideDate}
+                      </div>
+                    </div>
+
+                    {/* card do Post alinhado ao indicador atual */}
+                    <article className="flex-1 min-w-0 rounded-2xl overflow-hidden transition-all duration-200"
                       style={{ backgroundColor: '#1A1A1A', border: '1px solid rgba(255,255,255,0.08)' }}>
-                      {/* Image */}
+                      
+                      {/* imagem do Card */}
                       <div className="relative overflow-hidden cursor-pointer" style={{ aspectRatio: '4/3' }}
                         onClick={() => navigate(`/app/post/${post.id}`)}>
                         <ImageWithFallback src={post.image} alt={post.title}
@@ -310,6 +312,7 @@ export function Timeline() {
                         </div>
                       </div>
 
+                      {/* corpo do Conteúdo */}
                       <div className="p-3 sm:p-4">
                         <h3 className="text-white font-semibold mb-1 cursor-pointer hover:text-[#F4A6E8] transition-colors"
                           style={{ fontSize: 16, lineHeight: 1.4 }}
@@ -326,13 +329,13 @@ export function Timeline() {
                             <button onClick={() => navigate(`/app/profile/${author.id}`)}
                               className="flex items-center gap-1.5 hover:opacity-80 transition-opacity">
                               <img src={author.avatar} alt={author.name} className="w-4 h-4 rounded-full object-cover" />
-                              <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12 }}>{author.name.split(' ')[0]}</span>
+                              <span style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12 }}>{author.name?.split(' ')[0]}</span>
                             </button>
                           )}
                         </div>
 
                         <div className="flex flex-wrap gap-1.5 mb-3">
-                          {post.tags.slice(0, 3).map((tag, i) => (
+                          {Array.isArray(post.tags) && post.tags.slice(0, 3).map((tag, i) => (
                             <span key={tag} className="px-2 py-0.5 rounded-full text-xs"
                               style={{ backgroundColor: TAG_COLORS[i % TAG_COLORS.length] + '15', color: TAG_COLORS[i % TAG_COLORS.length], border: `1px solid ${TAG_COLORS[i % TAG_COLORS.length]}30` }}>
                               {tag}
@@ -340,12 +343,13 @@ export function Timeline() {
                           ))}
                         </div>
 
+                        {/* ações de Interação */}
                         <div className="flex items-center gap-4 pt-3" style={{ borderTop: '1px solid rgba(255,255,255,0.06)' }}>
                           <button onClick={() => handleLike(post)}
                             className="flex items-center gap-1.5 transition-colors"
                             style={{ color: liked ? '#F4A6E8' : 'rgba(255,255,255,0.4)' }}>
                             <Heart size={16} fill={liked ? '#F4A6E8' : 'none'} />
-                            <span style={{ fontSize: 13 }}>{post.likes}</span>
+                            <span style={{ fontSize: 13 }}>{post.likes ?? 0}</span>
                           </button>
                           <button onClick={() => navigate(`/app/post/${post.id}#comments`)}
                             className="flex items-center gap-1.5 transition-colors hover:text-white"
@@ -360,11 +364,12 @@ export function Timeline() {
                           </button>
                         </div>
                       </div>
+
                     </article>
-                  );
-                })}
-              </div>
-            </>
+                  </div>
+                );
+              })}
+            </div>
           )}
         </div>
       </div>

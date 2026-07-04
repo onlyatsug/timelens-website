@@ -51,8 +51,12 @@ export function Header() {
   const isActive = (path: string) =>
     path === '/app' ? location.pathname === '/app' : location.pathname.startsWith(path);
 
-  return (
-    <header className="fixed top-4 left-0 right-0 z-50 md:flex justify-center pointer-events-none px-6 z-100 z-index-100">
+return (
+    // Alterado para garantir uma classe z-50 limpa e adicionado estilo inline de segurança para o Z-index
+    <header 
+      className="fixed top-4 left-0 right-0 md:flex justify-center pointer-events-none px-6"
+      style={{ zIndex: 9999 }} 
+    >
       {/* Mobile */}
       <div
         className="md:hidden pointer-events-auto px-4 py-2 m-auto rounded-full"
@@ -71,11 +75,11 @@ export function Header() {
           </span>
         </Link>
       </div>
-      <div className="hidden md:flex pointer-events-auto flex items-center gap-3 px-3 py-2 rounded-full"
+      
+      {/* Desktop */}
+      <div className="hidden md:flex pointer-events-auto items-center gap-3 px-3 py-2 rounded-full"
         style={{ ...glass, maxWidth: 760, width: '100%' }}
-        
-        >
-
+      >
         {/* Logo */}
         <Link to="/app" className="flex items-center gap-2 shrink-0 pl-1">
           <span style={{ color: '#F4A6E8', fontWeight: 700, fontSize: 16, letterSpacing: '-0.3px' }}>
@@ -137,8 +141,8 @@ export function Header() {
             {dropdownOpen && (
               <>
                 <div className="fixed inset-0 z-40" onClick={() => setDropdownOpen(false)} />
-                <div className="absolute right-0 top-full mt-2 w-52 rounded-2xl overflow-hidden z-50"
-                  style={{ ...glass, backgroundColor: 'rgba(14,14,14,0.85)', border: '1px solid rgba(255,255,255,0.12)' }}>
+                <div className="absolute right-0 top-full mt-2 w-52 rounded-2xl overflow-hidden"
+                  style={{ ...glass, backgroundColor: 'rgba(14,14,14,0.85)', border: '1px solid rgba(255,255,255,0.12)', zIndex: 10000 }}>
                   <div className="flex items-center justify-between p-3 border-b" style={{ borderColor: 'rgba(255,255,255,0.07)' }}>
                     <div className="min-w-0 pr-2">
                       <p className="text-white text-sm font-medium truncate">{currentUser?.name}</p>
