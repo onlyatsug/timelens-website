@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { Settings, Grid, User as UserIcon, Heart, Clock, Shield, Ban } from 'lucide-react';
-// Importe as funções da sua API (note o alias UserType para não conflitar com o ícone User)
+
 import { 
   getUserById, 
   getPosts, 
@@ -24,18 +24,17 @@ const TABS: { id: ProfileTab; label: string; icon: React.ReactNode }[] = [
 
 export function ProfilePage() {
   const { userId } = useParams();
-  // 'posts' não é mais extraído daqui, pois buscaremos via API
-  const { currentUser, blockUser, unblockUser, blockedUsers } = useApp();
+  const { currentUser, blockUser, unblockUser, blockedUsers }:any = useApp();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<ProfileTab>('postagens');
 
-  // Estados da API
+  // estados da API
   const [profileUser, setProfileUser] = useState<UserType | null>(null);
   const [userPosts, setUserPosts] = useState<Post[]>([]);
   const [likedPosts, setLikedPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // O alvo do perfil é o ID da URL ou o ID do usuário logado (se estiver vendo o próprio perfil)
+  // o alvo do perfil é o ID da URL ou o ID do usuário logado (se estiver vendo o próprio perfil)
   const targetUserId = userId || currentUser?.id;
 
   useEffect(() => {
@@ -47,17 +46,17 @@ export function ProfilePage() {
     async function fetchProfileData() {
       setLoading(true);
       try {
-        // Busca paralela para otimizar tempo
+        // busca paralela para otimizar tempo
         const [fetchedUser, fetchedUserPosts, allPosts] = await Promise.all([
           getUserById(targetUserId as string),
           getPosts({ authorId: targetUserId as string }),
-          getPosts() // Busca todos para filtrar as curtidas
+          getPosts() // busca todos para filtrar as curtidas
         ]);
 
         if (fetchedUser) setProfileUser(fetchedUser);
         setUserPosts(fetchedUserPosts);
         
-        // Filtra os posts que o usuário curtiu
+        // filtra os posts que o usuário curtiu
         const liked = allPosts.filter(p => p.likedBy.includes(targetUserId as string));
         setLikedPosts(liked);
 
@@ -74,7 +73,7 @@ export function ProfilePage() {
   const isOwnProfile = profileUser?.id === currentUser?.id;
   const isBlocked = profileUser ? blockedUsers.includes(profileUser.id) : false;
 
-  // Marcos são filtrados em memória a partir dos posts do usuário
+  // marcos são filtrados em memória a partir dos posts do usuário
   const marcosPosts = useMemo(() => {
     return userPosts.filter(p => p.type === 'event' || p.type === 'project');
   }, [userPosts]);
@@ -106,9 +105,8 @@ export function ProfilePage() {
       <div className="max-w-2xl mx-auto px-4 pt-4 pb-10">
         <Breadcrumb items={[{ label: 'Mapa', path: '/app' }, { label: profileUser.name }]} />
 
-        {/* Profile header */}
+        {/* profile header */}
         <div className="mt-4 rounded-2xl p-5" style={{ backgroundColor: '#1A1A1A', border: '1px solid rgba(255,255,255,0.08)' }}>
-          {/* Avatar — centrada */}
           <div className="flex flex-col items-center mb-4">
             <div className="relative">
               <img src={profileUser.avatar} alt={profileUser.name}
@@ -127,7 +125,7 @@ export function ProfilePage() {
               Membro desde {new Date(profileUser.joinDate).getFullYear()}
             </p>
 
-{/* Actions */}
+            {/* Actions */}
             <div className="flex gap-2 mt-3">
               {isOwnProfile ? (
                 <>
@@ -137,7 +135,7 @@ export function ProfilePage() {
                     Editar
                   </button>
                   
-                  {/* Botão Admin - Visível apenas se for o próprio usuário e ele for admin */}
+                  {/* Botão Admin */}
                   {currentUser?.role === 'admin' && (
                     <button onClick={() => navigate('/app/admin')}
                       className="flex items-center gap-2 px-4 py-2 rounded-xl text-sm transition-colors hover:opacity-80"

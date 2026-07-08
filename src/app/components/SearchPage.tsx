@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { useNavigate, useSearchParams } from 'react-router';
 import { Search, X, Filter, Heart, MapPin } from 'lucide-react';
-// Importe as funções da sua API
+
 import { 
   getPosts, 
   getLocations, 
@@ -22,9 +22,9 @@ const TAG_COLORS = ['#F4A6E8', '#F4A870', '#A6E8F4', '#A6F4A8', '#E8A6F4'];
 export function SearchPage() {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { currentUser } = useApp();
+  const { currentUser }: any = useApp();
   
-  // Estados de Filtro
+  // estados de Filtro
   const [query, setQuery] = useState(searchParams.get('q') || '');
   const [selectedTags, setSelectedTags] = useState<string[]>(
     searchParams.get('tag') ? [searchParams.get('tag')!] : []
@@ -33,21 +33,21 @@ export function SearchPage() {
   const [yearTo, setYearTo] = useState('');
   const [showFilters, setShowFilters] = useState(false);
 
-  // Estados da API
+  // estados da API
   const [posts, setPosts] = useState<Post[]>([]);
   const [locations, setLocations] = useState<CampusLocation[]>([]);
   const [allTags, setAllTags] = useState<string[]>([]);
   const [usersCache, setUsersCache] = useState<Record<string, User>>({});
   const [loading, setLoading] = useState(true);
 
-  // Busca inicial dos dados
+  // busca inicial dos dados
   useEffect(() => {
     async function fetchData() {
       setLoading(true);
       try {
-        // Busca paralela para otimizar o tempo de resposta
+        // busca paralela para otimizar o tempo de resposta
         const [fetchedPosts, fetchedLocations, fetchedTags] = await Promise.all([
-          getPosts(), // Busca todos para permitir filtro rápido no cliente
+          getPosts(), // busca todos para permitir filtro rápido no cliente
           getLocations(),
           getTags()
         ]);
@@ -56,7 +56,7 @@ export function SearchPage() {
         setLocations(fetchedLocations);
         setAllTags(fetchedTags);
 
-        // Faz o cache dos autores
+        // faz o cache dos autores
         const authorIds = Array.from(new Set(fetchedPosts.map(p => p.authorId)));
         const usersData = await Promise.all(authorIds.map(id => getUserById(id)));
         
@@ -76,12 +76,12 @@ export function SearchPage() {
     fetchData();
   }, []);
 
-  // Extrai os anos disponíveis a partir dos posts carregados
+  // extrai os anos disponíveis a partir dos posts carregados
   const allYears = useMemo(() => {
     return [...new Set(posts.map(p => new Date(p.eventDate).getFullYear()))].sort((a, b) => b - a);
   }, [posts]);
 
-  // Filtra os resultados de forma performática no cliente
+  // filtra os resultados de forma performática no cliente
   const results = useMemo(() => {
     return posts.filter(post => {
       const matchesQuery = !query.trim() ||
@@ -96,9 +96,9 @@ export function SearchPage() {
     });
   }, [posts, query, selectedTags, yearFrom, yearTo]);
 
-  // Função para curtir com "Optimistic Update"
+  // função para curtir com "Optimistic Update"
   const handleLike = async (e: React.MouseEvent, post: Post) => {
-    e.stopPropagation(); // Evita navegar para a página do post ao clicar no curtir
+    e.stopPropagation(); // evita navegar para a página do post ao clicar no curtir
     if (!currentUser) return;
     
     const isLiked = post.likedBy.includes(currentUser.id);

@@ -2,7 +2,7 @@ import { createBrowserRouter } from 'react-router';
 import { Root } from './components/Root';
 import { Auth } from './components/Auth';
 import { HomeMap } from './components/HomeMap';
-import { Timeline } from './components/Timeline';
+import { Timeline } from './Timeline';
 import { PostExpanded } from './components/PostExpanded';
 import { NewMemory } from './components/NewMemory';
 import { SearchPage } from './components/SearchPage';

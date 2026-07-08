@@ -5,8 +5,6 @@ import { watchAuthState, logout as firebaseLogout, getIdToken } from '../../lib/
 
 interface AppContextValue {
   currentUser: User | null;
-  // Exposto para o Auth.tsx setar o usuário assim que o login/cadastro
-  // no Firebase + sincronização com o backend terminam.
   setCurrentUser: (user: User | null) => void;
   logout: () => Promise<void>;
   blockedUsers: string[];
@@ -21,10 +19,9 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
   const [blockedUsers, setBlockedUsers] = useState<string[]>([]);
   const [isInitializing, setIsInitializing] = useState(true);
 
-  // Observa o estado de autenticação do Firebase. Isso roda:
-  // - uma vez no carregamento (restaura a sessão se o usuário já
-  //   tinha logado antes, sem precisar de auto-login mockado)
-  // - toda vez que o usuário loga/desloga (inclusive vindo do Auth.tsx)
+  // observa o estado de autenticação do Firebase. isso roda:
+  // uma vez no carregamento (restaura a sessão)
+  // toda vez que o usuário loga/desloga
   useEffect(() => {
     const unsubscribe = watchAuthState(async (firebaseUser) => {
       if (!firebaseUser) {
@@ -53,7 +50,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setCurrentUser(null);
   }, []);
 
-  // Bloqueio de usuários mantido localmente (já que o backend atual não tem tabela de bloqueios)
+  // bloqueio de usuários mantido localmente (don't implemented on backend)
   const blockUser = useCallback((userId: string) => {
     setBlockedUsers(prev => [...prev, userId]);
   }, []);
@@ -62,7 +59,7 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     setBlockedUsers(prev => prev.filter(id => id !== userId));
   }, []);
 
-  // Evita renderizar o app antes de saber se há uma sessão do Firebase ativa
+  // evita renderizar o app antes de saber se há uma sessão ativa
   if (isInitializing) {
     return <div style={{ backgroundColor: '#0D0D0D', minHeight: '100vh' }} />;
   }
@@ -82,7 +79,5 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
 }
 
 export function useApp() {
-  const ctx = useContext(AppContext);
-  if (!ctx) throw new Error('useApp deve ser usado dentro de um AppProvider');
-  return ctx;
+  return useContext(AppContext);
 }

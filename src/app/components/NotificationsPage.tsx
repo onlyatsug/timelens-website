@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import { Heart, MessageCircle, AtSign, MapPin, Bell } from 'lucide-react';
-// Importe as funções do seu novo arquivo de serviços (ex: api.ts)
+
 import { getNotifications, getPostById, markNotificationAsRead, timeAgo, Notification, Post } from '../../services/api'; 
 import { useApp } from './AppContext';
 import { Breadcrumb } from './Breadcrumb';
@@ -21,7 +21,7 @@ const BG = {
 };
 
 export function NotificationsPage() {
-  const { currentUser } = useApp();
+  const { currentUser }:any = useApp();
   const navigate = useNavigate();
 
   const [notifications, setNotifications] = useState<Notification[]>([]);
@@ -34,23 +34,23 @@ export function NotificationsPage() {
     async function fetchData() {
       try {
         setLoading(true);
-        // 1. Busca as notificações do usuário logado
+        // 1. busca as notificações do usuário logado
         if (!currentUser) return;
         const data = await getNotifications(currentUser.id);
         
-        // Ordena da mais recente para a mais antiga
+        // ordena da mais recente para a mais antiga
         const sortedData = data.sort((a, b) => 
           new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
         );
         setNotifications(sortedData);
 
-        // 2. Coleta os IDs únicos dos posts referenciados nas notificações
+        // 2. coleta os IDs únicos dos posts referenciados nas notificações
         const postIds = Array.from(new Set(sortedData.map(n => n.postId).filter(Boolean))) as string[];
         
-        // 3. Busca os dados dos posts em paralelo para mostrar a miniatura da imagem
+        // 3. busca os dados dos posts em paralelo para mostrar a miniatura da imagem
         const postsData = await Promise.all(postIds.map(id => getPostById(id)));
         
-        // Cria um dicionário para acesso rápido O(1) no render
+        // cria um dicionário para acesso rápido O(1) no render
         const postsMap: Record<string, Post> = {};
         postsData.forEach(p => {
           if (p) postsMap[p.id] = p;
@@ -68,11 +68,11 @@ export function NotificationsPage() {
   }, [currentUser]);
 
   const handleNotificationClick = async (notif: Notification) => {
-    // Se a notificação não foi lida, marca como lida na API
+    // se a notificação não foi lida, marca como lida na API
     if (!notif.read) {
       try {
         await markNotificationAsRead(notif.id);
-        // Atualiza o estado local para refletir a mudança instantaneamente
+        // atualiza o estado local para refletir a mudança instantaneamente
         setNotifications(prev => 
           prev.map(n => n.id === notif.id ? { ...n, read: true } : n)
         );
@@ -81,7 +81,7 @@ export function NotificationsPage() {
       }
     }
 
-    // Navega para o post
+    // navega para o post
     if (notif.postId) {
       navigate(`/app/post/${notif.postId}`);
     }

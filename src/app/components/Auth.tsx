@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { Eye, EyeOff, AlertCircle } from 'lucide-react';
 import { registerWithEmail, loginWithEmail, loginWithGoogle, AuthDomainError } from '../../lib/authService';
-import { useApp } from './AppContext'; // Ajuste o caminho de importação conforme sua pasta
+import { useApp } from './AppContext';
 
 export function Auth() {
   const navigate = useNavigate();
-  // Consome o usuário e o estado de carregamento do AppContext
-  const { currentUser, loading: globalLoading } = useApp(); 
+  // consome o usuário e o estado de carregamento do AppContext
+  const { currentUser, loading: globalLoading }:any = useApp(); 
 
   const [tab, setTab] = useState<'login' | 'cadastro'>('login');
   const [showPassword, setShowPassword] = useState(false);
@@ -60,7 +60,6 @@ export function Auth() {
     }
   };
 
-  // Verifica se o componente está carregando local ou globalmente (apenas para o Google)
   const isBusy = isSubmitting || globalLoading;
 
   return (
@@ -73,7 +72,7 @@ export function Auth() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <h1 className="text-white" style={{ fontSize: 32, fontWeight: 700, letterSpacing: '-0.5px' }}>Timelens</h1>
-          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 14 }}>A cápsula do tempo digital da UFMT</p>
+          <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 14 }}>O memorial do tempo e espaço da UFMT</p>
         </div>
 
         <div className="rounded-3xl p-6" style={{ backgroundColor: '#1A1A1A', border: '1px solid rgba(255,255,255,0.08)' }}>

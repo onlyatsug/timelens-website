@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router';
 import { Map, Clock, Search, Bell, Plus, LogOut, Settings, Shield, X } from 'lucide-react';
 import { useApp } from './AppContext';
-// Importa o serviço da API no lugar do arquivo de dados estático
 import { getNotifications } from '../../services/api';
 
 const glass = {
@@ -14,13 +13,13 @@ const glass = {
 } as const;
 
 export function Header() {
-  const { currentUser, logout } = useApp();
+  const { currentUser, logout }: any = useApp();
   const navigate = useNavigate();
   const location = useLocation();
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [unreadCount, setUnreadCount] = useState(0);
 
-  // Busca a quantidade de notificações não lidas assim que o usuário estiver disponível
+  // busca a quantidade de notificações não lidas assim que o usuário estiver disponível
   useEffect(() => {
     if (!currentUser) return;
     
@@ -37,10 +36,8 @@ export function Header() {
     
     fetchUnreadNotifications();
     
-    // Você pode opcionalmente adicionar um setInterval aqui para fazer polling a cada X minutos e manter o número atualizado:
-    // const interval = setInterval(fetchUnreadNotifications, 60000); // 1 min
-    // return () => clearInterval(interval);
-  }, [currentUser, location.pathname]); // Atualiza o contador quando o usuário troca de página (ex: ao sair da página de notificações)
+    // to-do: adicionar um setInterval aqui para fazer polling a cada X minutos e manter o número atualizado:
+  }, [currentUser, location.pathname]); // atualiza o contador quando o usuário troca de página
 
   const navItems = [
     { label: 'Mapa', path: '/app', icon: <Map size={15} /> },
@@ -52,7 +49,6 @@ export function Header() {
     path === '/app' ? location.pathname === '/app' : location.pathname.startsWith(path);
 
 return (
-    // Alterado para garantir uma classe z-50 limpa e adicionado estilo inline de segurança para o Z-index
     <header 
       className="fixed top-4 left-0 right-0 md:flex justify-center pointer-events-none px-6"
       style={{ zIndex: 9999 }} 

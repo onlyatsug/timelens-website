@@ -1,10 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { Upload, X, CheckCircle, MapPin, Tag, AlertCircle, Plus } from 'lucide-react';
-// Importações do Leaflet
+// importações do Leaflet
 import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
 
 import { getLocations, getTags, createPost, createLocation, CampusLocation } from '../../services/api';
 import { useApp } from './AppContext';
@@ -31,7 +30,7 @@ const POST_TYPES: { id: PostType; label: string }[] = [
 
 export function NewMemory() {
   const navigate = useNavigate();
-  const { currentUser } = useApp();
+  const { currentUser }:any = useApp();
   
   const [step, setStep] = useState<Step>(1);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
@@ -43,11 +42,11 @@ export function NewMemory() {
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [customTag, setCustomTag] = useState('');
   
-  // Estados de Localização
+  // estados de Localização
   const [locationId, setLocationId] = useState('');
   const [mapPin, setMapPin] = useState<{ lat: number; lng: number } | null>(null);
   
-  // ---> ESTADOS DO NOVO LOCAL (o erro estava aqui!) <---
+  // estados Local
   const [isNewLocation, setIsNewLocation] = useState(false);
   const [newLocName, setNewLocName] = useState('');
   const [newLocShortName, setNewLocShortName] = useState('');
@@ -102,7 +101,7 @@ export function NewMemory() {
     setCustomTag('');
   };
 
-  // Componente interno do Leaflet para capturar cliques
+  // componente interno do Leaflet para capturar cliques
   function LocationPicker() {
     useMapEvents({
       click(e) {
@@ -125,11 +124,10 @@ const handlePublish = async () => {
     setPublishing(true);
     
     try {
-      // URL padrão caso o usuário não envie imagem
+      // URL padrão caso o usuário (to-do: tornar imagem obrigatória)
       let finalImageUrl = 'https://images.unsplash.com/photo-1562774053-701939374585?auto=format&fit=crop&w=800&h=600'; 
 
       if (imageFile) {
-        // Substitua com os dados que você pegou no Passo 1:
         const CLOUD_NAME = "ywlyewrt"; 
         const UPLOAD_PRESET = "uprql93c"; 
 
@@ -137,7 +135,7 @@ const handlePublish = async () => {
         formData.append('file', imageFile);
         formData.append('upload_preset', UPLOAD_PRESET);
 
-        // Faz a requisição direto para a API do Cloudinary
+        // faz a requisição direto para a API do Cloudinary
         const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/image/upload`, {
           method: 'POST',
           body: formData,
@@ -148,7 +146,7 @@ const handlePublish = async () => {
         }
 
         const data = await response.json();
-        finalImageUrl = data.secure_url; // 🔥 Aqui está o link público e curto da imagem!
+        finalImageUrl = data.secure_url; 
       }
 
       let finalLocationId = locationId;
@@ -174,7 +172,7 @@ const handlePublish = async () => {
         throw new Error('Falha ao definir o local da memória.');
       }
 
-      // Envia o post para o seu backend com a URL limpa do Cloudinary
+      // envia o post para o seu backend com a URL limpa do Cloudinary
       await createPost({
         title,
         content,
@@ -215,6 +213,14 @@ const handlePublish = async () => {
   }
 
   return (
+  <>
+      <style>{`
+        .leaflet-container { background: #0A120A; font-family: 'Syne', sans-serif; }
+        .leaflet-control-zoom a { background: #1A1A1A !important; color: #F4A6E8 !important; border-color: rgba(255,255,255,0.12) !important; }
+        .leaflet-control-zoom a:hover { background: #262626 !important; }
+        .leaflet-control-attribution { background: rgba(13,13,13,0.75) !important; color: rgba(255,255,255,0.3) !important; font-size: 10px !important; }
+        .leaflet-control-attribution a { color: rgba(244,166,232,0.6) !important; }
+    `}</style>
     <div className="min-h-screen" style={{ backgroundColor: '#0D0D0D' }}>
       <div className="max-w-lg mx-auto px-4 pt-4 pb-10">
         <Breadcrumb items={[{ label: 'Mapa', path: '/app' }, { label: '+ Nova Memória' }]} />
@@ -254,7 +260,7 @@ const handlePublish = async () => {
           </div>
         )}
 
-        {/* Step 1: Image */}
+        {/* Step 1: image */}
         {step === 1 && (
           <div className="flex flex-col gap-4">
             <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={handleImage} />
@@ -290,7 +296,7 @@ const handlePublish = async () => {
           </div>
         )}
 
-        {/* Step 2: Content */}
+        {/* Step 2: content */}
         {step === 2 && (
           <div className="flex flex-col gap-4">
             <div className="flex flex-col gap-1.5">
@@ -337,13 +343,13 @@ const handlePublish = async () => {
               />
             </div>
 
-{/* Tags */}
+            {/* tags */}
             <div className="flex flex-col gap-2">
               <label className="flex items-center gap-2" style={{ color: 'rgba(255,255,255,0.7)', fontSize: 13 }}>
                 <Tag size={14} /> Tags temáticas
               </label>
 
-              {/* Top tags suggestion (Sugestões globais vindas do banco) */}
+              {/* top tags suggestion */}
               <div className="mb-2">
                 <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 12, marginBottom: 6 }}>Tags em destaque</p>
                 <div className="flex flex-wrap gap-2">
@@ -365,7 +371,7 @@ const handlePublish = async () => {
                 </div>
               </div>
 
-              {/* 🔥 Minhas Tags Adicionadas (Mostra as tags ativas neste post) */}
+              {/* mostra as tags ativas neste post */}
               {selectedTags.length > 0 && (
                 <div className="mb-2 p-3 rounded-xl" style={{ backgroundColor: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.05)' }}>
                   <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 12, marginBottom: 6 }}>Tags adicionadas a esta memória:</p>
@@ -387,7 +393,7 @@ const handlePublish = async () => {
                 </div>
               )}
 
-              {/* Campo para criar Tag Customizada */}
+              {/* campo para criar Tag Customizada */}
               <div className="flex gap-2">
                 <input type="text" placeholder="#NovaTag" value={customTag}
                   onChange={e => setCustomTag(e.target.value)}
@@ -427,7 +433,7 @@ const handlePublish = async () => {
                 <MapPin size={14} style={{ color: '#F4A6E8' }} /> Escolha um local abaixo ou clique no mapa *
               </label>
 
-              {/* MAPA LEAFLET INTERATIVO */}
+              {/* mapa */}
               <div className="rounded-2xl overflow-hidden relative z-0" style={{ border: '1px solid rgba(255,255,255,0.08)', backgroundColor: '#0F1A0F' }}>
                 <div style={{ height: 300 }}>
                   <MapContainer 
@@ -519,5 +525,6 @@ const handlePublish = async () => {
         )}
       </div>
     </div>
+  </>
   );
 }

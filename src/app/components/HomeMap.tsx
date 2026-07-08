@@ -8,17 +8,17 @@ import { CampusMap } from './CampusMap';
 export function HomeMap() {
   const navigate = useNavigate();
   
-  // Estados da API
+  // estados da API
   const [locations, setLocations] = useState<CampusLocation[]>([]);
   const [posts, setPosts] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Estados da UI
+  // estados da UI
   const [hoveredLocation, setHoveredLocation] = useState<string | null>(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [locPage, setLocPage] = useState(1);
 
-  // Busca os dados da API ao montar o componente
+  // busca os dados 
   useEffect(() => {
     async function fetchData() {
       try {
@@ -37,7 +37,7 @@ export function HomeMap() {
     fetchData();
   }, []);
 
-  // Filtra as localidades e reseta a paginação quando a busca muda
+  // filtra as localidades e reseta a paginação quando a busca muda
   useEffect(() => { 
     setLocPage(1); 
   }, [searchQuery]);

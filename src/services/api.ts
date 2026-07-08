@@ -1,9 +1,5 @@
 const API_URL = 'https://timelens-server-psi.vercel.app/api';
 
-// ==========================================
-// INTERFACES (Mantidas exatamente iguais)
-// ==========================================
-
 export type UserRole = 'user' | 'admin';
 
 export interface User {
@@ -63,9 +59,8 @@ export interface Notification {
   read: boolean;
 }
 
-// ==========================================
+
 // FUNÇÕES UTILITÁRIAS (Síncronas)
-// ==========================================
 
 export function formatDate(dateStr: string): string {
   return new Date(dateStr).toLocaleDateString('pt-BR', { year: 'numeric', month: 'long', day: 'numeric' });
@@ -83,9 +78,8 @@ export function timeAgo(dateStr: string): string {
   return formatDate(dateStr);
 }
 
-// ==========================================
+
 // SERVIÇOS DA API (Assíncronos)
-// ==========================================
 
 // --- Autenticação ---
 export async function syncUser(idToken: string, name?: string): Promise<User> {

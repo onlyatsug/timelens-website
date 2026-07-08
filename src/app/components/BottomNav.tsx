@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router';
 import { Map, Bell, User, Plus, Clock } from 'lucide-react';
 import { useApp } from './AppContext';
-// Importa o serviço da API
+
 import { getNotifications } from '../../services/api';
 
 const glass = {
@@ -14,13 +14,13 @@ const glass = {
 } as const;
 
 export function BottomNav() {
-  const { currentUser } = useApp();
+  const { currentUser }: any = useApp();
   const navigate = useNavigate();
   const location = useLocation();
   
   const [unreadCount, setUnreadCount] = useState(0);
 
-  // Busca as notificações não lidas da API
+  // busca as notificações não lidas da API
   useEffect(() => {
     if (!currentUser) return;
     
@@ -36,7 +36,7 @@ export function BottomNav() {
     }
     
     fetchUnreadNotifications();
-  }, [currentUser, location.pathname]); // Atualiza quando trocar de página
+  }, [currentUser, location.pathname]); 
 
   const isActive = (path: string) =>
     path === '/app' ? location.pathname === '/app' : location.pathname.startsWith(path);
@@ -88,7 +88,7 @@ export function BottomNav() {
           </button>
         ))}
 
-        {/* Central CTA — elevated pink pill */}
+        {/* Central CTA */}
         <button onClick={() => navigate('/app/new-memory')}
           className="flex items-center justify-center rounded-full transition-all duration-200 active:scale-90 mx-1 hover:scale-105"
           style={{
@@ -102,7 +102,7 @@ export function BottomNav() {
           <Plus size={22} />
         </button>
 
-        {/* Right nav items */}
+        {/* nav items */}
         {rightItems.map(item => {
           const active = isActive(item.path);
           return (

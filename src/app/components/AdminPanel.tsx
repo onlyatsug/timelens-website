@@ -14,7 +14,7 @@ const SIDEBAR_ITEMS: { id: AdminTab; label: string; icon: React.ReactNode }[] = 
   { id: 'configuracoes', label: 'Configurações', icon: <Settings size={16} /> },
 ];
 
-// O backend atual não tem rotas de denúncias, então mantemos isso mockado localmente para não quebrar a UI
+// o backend atual não tem rotas de denúncias, então mantemos isso mockado localmente para não quebrar a UI
 const MOCK_REPORTS = [
   { id: 'r1', postId: 'p3', reason: 'Conteúdo inapropriado', reporter: 'u4', status: 'pendente' },
   { id: 'r2', postId: 'p6', reason: 'Informação incorreta', reporter: 'u2', status: 'revisado' },
@@ -23,19 +23,20 @@ const MOCK_REPORTS = [
 export function AdminPanel() {
   const navigate = useNavigate();
   // blockUser e unblockUser continuam no Context porque não tem endpoint disso na API atual
-  const { currentUser, blockUser, unblockUser, blockedUsers } = useApp();
+  const { currentUser, blockUser, unblockUser, blockedUsers }:any = useApp();
   
   const [activeTab, setActiveTab] = useState<AdminTab>('usuarios');
   const [feedback, setFeedback] = useState('');
 
-  // Estados da API
+  // estados da API
   const [usersList, setUsersList] = useState<User[]>([]);
   const [postsList, setPostsList] = useState<Post[]>([]);
   const [loading, setLoading] = useState(true);
 
-  // Busca inicial dos dados do painel
+  // busca inicial dos dados do painel
   useEffect(() => {
-    // Evita chamadas de API se o usuário não for admin
+
+    // evita chamadas de API se o usuário não for admin (to-do: autorizar via firebase)
     if (currentUser?.role !== 'admin') return;
 
     async function loadAdminData() {
@@ -56,7 +57,7 @@ export function AdminPanel() {
     loadAdminData();
   }, [currentUser]);
 
-  // Se não for admin, chuta pra fora (Acesso Negado)
+  // se não for admin, chuta pra fora
   if (!currentUser || currentUser.role !== 'admin') {
     return <Navigate to="/app" replace />;
   }
@@ -67,7 +68,7 @@ export function AdminPanel() {
   };
 
   const handleDeletePost = async (postId: string) => {
-    // Atualização Otimista
+
     setPostsList(prev => prev.filter(p => p.id !== postId));
     
     try {
@@ -76,7 +77,7 @@ export function AdminPanel() {
     } catch (error) {
       console.error("Erro ao deletar memória:", error);
       showFeedback('Erro: Não foi possível remover a memória.');
-      // Opcional: Reverter estado em caso de erro
+
     }
   };
 

@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router';
 import { Heart, MessageCircle, Share2, MapPin, Calendar, Trash2, Send, ArrowLeft, X } from 'lucide-react';
-//funções da API
+
 import { 
   getPostById, 
   getLocationById, 
@@ -26,7 +26,7 @@ const TAG_COLORS = ['#F4A6E8', '#F4A870', '#A6E8F4', '#A6F4A8', '#E8A6F4'];
 export function PostExpanded() {
   const { postId } = useParams();
   const navigate = useNavigate();
-  const { currentUser } = useApp();
+  const { currentUser }:any = useApp();
   
   const [activeTab, setActiveTab] = useState<'conteudo' | 'comentarios'>('conteudo');
   const [commentText, setCommentText] = useState('');
@@ -34,7 +34,7 @@ export function PostExpanded() {
   const [showImageModal, setShowImageModal] = useState(false);
   const commentInputRef = useRef<HTMLInputElement>(null);
 
-  // estados da API
+  // estados
   const [post, setPost] = useState<Post | null>(null);
   const [location, setLocation] = useState<CampusLocation | null>(null);
   const [author, setAuthor] = useState<User | null>(null);
@@ -67,6 +67,7 @@ export function PostExpanded() {
     async function loadData() {
       setLoading(true);
       try {
+        if (!postId) return;
         const fetchedPost = await getPostById(postId);
         
         if (fetchedPost) {
@@ -317,8 +318,8 @@ export function PostExpanded() {
                   <Send size={14} />
                 </button>
               </form>
-
-              <div className="divide-y" style={{ divideColor: 'rgba(255,255,255,0.04)' }}>
+              
+              <div className="divide-y" style={{ ['--tw-divide-color' as any]: 'rgba(255,255,255,0.04)' }}>
                 {postComments.length === 0 ? (
                   <div className="text-center py-10">
                     <p style={{ color: 'rgba(255,255,255,0.3)', fontSize: 14 }}>Nenhum comentário ainda.</p>

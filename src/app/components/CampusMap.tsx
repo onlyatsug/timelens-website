@@ -1,6 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import L from 'leaflet';
-// Removemos o ./data e importamos a API
 import { getLocations, getPosts, CampusLocation, Post } from '../../services/api';
 
 const CAMPUS_CENTER: [number, number] = [-15.609437, -56.06549];
@@ -23,16 +22,15 @@ export function CampusMap({ onLocationClick, onLocationHover, filteredIds }: Cam
   const markersRef = useRef<Record<string, L.Marker>>({});
   const callbacksRef = useRef({ onLocationClick, onLocationHover });
 
-  // Estados da API
+  // estados da API
   const [locations, setLocations] = useState<CampusLocation[]>([]);
   const [posts, setPosts] = useState<Post[]>([]);
 
-  // Mantém as callbacks atualizadas sem precisar recriar o mapa
   useEffect(() => {
     callbacksRef.current = { onLocationClick, onLocationHover };
   });
 
-  // 1. Busca os dados da API
+  // 1. busca os dados da API
   useEffect(() => {
     async function fetchData() {
       try {
@@ -49,7 +47,7 @@ export function CampusMap({ onLocationClick, onLocationHover, filteredIds }: Cam
     fetchData();
   }, []);
 
-  // 2. Inicializa a base do mapa UMA ÚNICA VEZ
+  // 2. inicializa a base do mapa
   useEffect(() => {
     if (!containerRef.current || mapRef.current) return;
 
@@ -75,12 +73,12 @@ export function CampusMap({ onLocationClick, onLocationHover, filteredIds }: Cam
     };
   }, []);
 
-  // 3. Adiciona ou atualiza os pinos (markers) quando os dados chegarem
+  // 3. adiciona ou atualiza os pinos quando os dados chegarem
   useEffect(() => {
     const map = mapRef.current;
     if (!map) return;
 
-    // Remove os pinos antigos antes de desenhar os novos para evitar duplicação
+    // remove os pinos antigos 
     Object.values(markersRef.current).forEach(marker => marker.remove());
     markersRef.current = {};
 
@@ -95,7 +93,6 @@ export function CampusMap({ onLocationClick, onLocationHover, filteredIds }: Cam
       markersRef.current[loc.id] = marker;
     });
 
-    // Reaplica a opacidade caso já exista um filtro ativo
     if (filteredIds) {
       Object.entries(markersRef.current).forEach(([id, marker]) => {
         const dimmed = filteredIds.length > 0 && !filteredIds.includes(id);
@@ -103,9 +100,9 @@ export function CampusMap({ onLocationClick, onLocationHover, filteredIds }: Cam
       });
     }
 
-  }, [locations, posts]); // Roda sempre que novas localidades ou posts chegarem do banco
+  }, [locations, posts]); // roda sempre que novas localidades ou posts chegarem do banco
 
-  // 4. Atualiza a opacidade dos pinos ao pesquisar (filtrar)
+  // 4. atualiza a opacidade dos pinos ao pesquisar (filtrar)
   useEffect(() => {
     Object.entries(markersRef.current).forEach(([id, marker]) => {
       const dimmed = filteredIds && filteredIds.length > 0 && !filteredIds.includes(id);

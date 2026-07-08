@@ -12,10 +12,10 @@ import {
   Post, 
   CampusLocation, 
   User 
-} from '../../services/api';
-import { useApp } from './AppContext';
-import { Breadcrumb } from './Breadcrumb';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+} from '../services/api';
+import { useApp } from './components/AppContext';
+import { Breadcrumb } from './components/Breadcrumb';
+import { ImageWithFallback } from './components/figma/ImageWithFallback';
 
 type Tab = 'cronologico' | 'tags' | 'eventos' | 'projetos' | 'coletivos';
 
@@ -32,7 +32,7 @@ const TAG_COLORS = ['#F4A6E8', '#F4A870', '#A6E8F4', '#A6F4A8', '#E8A6F4'];
 export function Timeline() {
   const { locationId } = useParams();
   const navigate = useNavigate();
-  const { currentUser } = useApp();
+  const { currentUser }:any = useApp();
   
   const [activeTab, setActiveTab] = useState<Tab>('cronologico');
   const [periodFilter, setPeriodFilter] = useState('');

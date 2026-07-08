@@ -21,7 +21,6 @@ Este repositório contém o **frontend** da aplicação, desenvolvido no escopo 
 
 - **React 18** + **TypeScript**
 - **Vite** como bundler
-- **React Router** para as rotas
 - **Tailwind CSS 4** + **shadcn/ui** (Radix UI) para os componentes de interface
 - **Firebase Auth** para autenticação
 - **Leaflet / React Leaflet** para o mapa do campus
@@ -55,31 +54,33 @@ Por padrão, `src/services/api.ts` aponta para a API em produção (`https://tim
 
 ```
 src/
-  main.tsx                      ponto de entrada da aplicação
+  main.tsx                         ponto de entrada da aplicação
   app/
-    App.tsx                     componente raiz, provê o AppProvider e o router
-    routes.ts                   definição das rotas (React Router)
+    App.tsx                        componente raiz, provê o AppProvider e o router
+    routes.ts                      definição das rotas 
     components/
-      Root.tsx                  layout comum das telas autenticadas (/app)
-      Auth.tsx                  telas de login/cadastro
-      AppContext.tsx            contexto global: usuário atual, logout, bloqueios
+      Root.tsx                     layout comum das telas autenticadas (/app)
+      Auth.tsx                     telas de login/cadastro
+      AppContext.tsx               contexto global: usuário atual, logout, bloqueios
       HomeMap.tsx / CampusMap.tsx  mapa do campus
-      Timeline.tsx               linha do tempo de memórias por local
-      PostExpanded.tsx           detalhe de uma memória (com comentários)
-      NewMemory.tsx              criação de uma nova memória
-      SearchPage.tsx             busca e filtros
-      ProfilePage.tsx            perfil do usuário
-      NotificationsPage.tsx      notificações
-      AdminPanel.tsx             painel administrativo
-      Header.tsx / BottomNav.tsx / Breadcrumb.tsx  navegação
-      ui/                        componentes shadcn/ui reutilizáveis
-      figma/                     assets exportados do Figma
+      Timeline.tsx                 linha do tempo de memórias por local
+      PostExpanded.tsx             detalhe de uma memória (com comentários)
+      NewMemory.tsx                criação de uma nova memória
+      SearchPage.tsx               busca e filtros
+      ProfilePage.tsx              perfil do usuário
+      NotificationsPage.tsx        notificações
+      AdminPanel.tsx               painel administrativo
+      Header.tsx / 
+      BottomNav.tsx / 
+      Breadcrumb.tsx               navegação
+      ui/                          componentes shadcn/ui reutilizáveis
+      figma/                       assets exportados do Figma
   services/
-    api.ts                       tipos + todas as chamadas para o backend
+    api.ts                         tipos + todas as chamadas para o backend
   lib/
-    firebase.ts                  inicialização do Firebase
-    authService.ts                login, cadastro, logout, observação de sessão
-  styles/                        estilos globais e tema
+    firebase.ts                    inicialização do Firebase
+    authService.ts                 login, cadastro, logout, observação de sessão
+  styles/                          estilos globais e tema
 ```
 
 ## Rotas
@@ -107,6 +108,10 @@ A autenticação funciona em duas camadas:
 
 ## Roadmap / débitos técnicos conhecidos
 
+- [ ] Criar e aplicar Testes (não tem nenhum)
+- [ ] Implementar React Router
+- [ ] Corrigir gambiarras de Tipagem do TS
+- [ ] Implementar variáveis para cores (design system)
 - [ ] Tornar a `API_URL` configurável via variável de ambiente (`VITE_API_URL`) em vez de hardcoded
 - [ ] Mover o bloqueio de usuários (hoje só em memória no `AppContext`) para o backend
 - [ ] Testes automatizados de componentes e fluxos principais
