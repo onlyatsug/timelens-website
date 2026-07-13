@@ -13,9 +13,9 @@ import {
   CampusLocation, 
   User 
 } from '../../services/api';
-import { useApp } from './AppContext';
+import { useApp } from '../AppContext';
 import { Breadcrumb } from './Breadcrumb';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+
 
 const TAG_COLORS = ['#F4A6E8', '#F4A870', '#A6E8F4', '#A6F4A8', '#E8A6F4'];
 
@@ -276,7 +276,7 @@ export function SearchPage() {
                   className="flex gap-3 p-3 rounded-2xl text-left transition-all hover:bg-white/5"
                   style={{ backgroundColor: '#1A1A1A', border: '1px solid rgba(255,255,255,0.08)' }}>
                   <div className="w-20 h-16 rounded-xl overflow-hidden shrink-0">
-                    <ImageWithFallback src={post.image} alt={post.title} className="w-full h-full object-cover" />
+                    <p>image fallback</p>
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-white font-medium truncate" style={{ fontSize: 14 }}>{post.title}</p>

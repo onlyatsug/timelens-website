@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, Navigate } from 'react-router';
 import { Users, Shield, Flag, Settings, Trash2, Ban, CheckCircle, AlertTriangle } from 'lucide-react';
 import { getUsers, getPosts, deletePost as apiDeletePost, User, Post } from '../../services/api';
-import { useApp } from './AppContext';
+import { useApp } from '../AppContext';
 import { Breadcrumb } from './Breadcrumb';
 
 type AdminTab = 'usuarios' | 'conteudo' | 'denuncias' | 'configuracoes';

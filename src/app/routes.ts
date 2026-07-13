@@ -1,23 +1,23 @@
 import { createBrowserRouter } from 'react-router';
-import { Root } from './components/Root';
-import { Auth } from './components/Auth';
-import { HomeMap } from './components/HomeMap';
-import { Timeline } from './Timeline';
-import { PostExpanded } from './components/PostExpanded';
-import { NewMemory } from './components/NewMemory';
-import { SearchPage } from './components/SearchPage';
-import { ProfilePage } from './components/ProfilePage';
-import { NotificationsPage } from './components/NotificationsPage';
-import { AdminPanel } from './components/AdminPanel';
+import { Layout } from './layout';
+import AuthPage from './pages/auth/page';
+import { HomeMap } from './pages/HomeMap';
+import { Timeline } from './pages/Timeline';
+import { PostExpanded } from './pages/PostExpanded';
+import { NewMemory } from './pages/NewMemory';
+import { SearchPage } from './pages/SearchPage';
+import { ProfilePage } from './pages/ProfilePage';
+import { NotificationsPage } from './pages/NotificationsPage';
+import { AdminPanel } from './pages/AdminPanel';
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    Component: Auth,
+    Component: AuthPage,
   },
   {
     path: '/app',
-    Component: Root,
+    Component: Layout,
     children: [
       { index: true, Component: HomeMap },
       { path: 'timeline', Component: Timeline },

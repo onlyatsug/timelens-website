@@ -9,9 +9,8 @@ import {
   User as UserType, 
   Post 
 } from '../../services/api';
-import { useApp } from './AppContext';
+import { useApp } from '../AppContext';
 import { Breadcrumb } from './Breadcrumb';
-import { ImageWithFallback } from './figma/ImageWithFallback';
 
 type ProfileTab = 'postagens' | 'sobre' | 'marcos' | 'curtidas';
 
@@ -245,8 +244,7 @@ export function ProfilePage() {
                     className="rounded-2xl overflow-hidden text-left group transition-all hover:scale-[1.02]"
                     style={{ backgroundColor: '#1A1A1A', border: '1px solid rgba(255,255,255,0.07)' }}>
                     <div className="relative overflow-hidden" style={{ aspectRatio: '4/3' }}>
-                      <ImageWithFallback src={post.image} alt={post.title}
-                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" />
+                      <p>fallback image from figma</p>
                       <div className="absolute inset-0 pointer-events-none"
                         style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.6), transparent 60%)' }} />
                       <p className="absolute bottom-2 left-2 right-2 text-white font-medium leading-tight" style={{ fontSize: 11 }}>

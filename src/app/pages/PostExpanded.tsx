@@ -17,9 +17,8 @@ import {
   User,
   Comment
 } from '../../services/api';
-import { useApp } from './AppContext';
+import { useApp } from '../AppContext';
 import { Breadcrumb } from './Breadcrumb';
-import { ImageWithFallback } from './figma/ImageWithFallback';
 
 const TAG_COLORS = ['#F4A6E8', '#F4A870', '#A6E8F4', '#A6F4A8', '#E8A6F4'];
 
@@ -204,11 +203,7 @@ export function PostExpanded() {
           style={{ aspectRatio: '16/9', backgroundColor: '#000' }}
           onClick={() => setShowImageModal(true)}
         >
-          <ImageWithFallback
-            src={post.image}
-            alt={post.title}
-            className="w-full h-full object-contain transition-transform duration-200 group-hover:scale-[1.02]"
-          />
+          <p>fallback image from figma</p>
           <div className="absolute inset-0 pointer-events-none"
             style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%)' }} />
 

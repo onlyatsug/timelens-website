@@ -12,10 +12,9 @@ import {
   Post, 
   CampusLocation, 
   User 
-} from '../services/api';
-import { useApp } from './components/AppContext';
-import { Breadcrumb } from './components/Breadcrumb';
-import { ImageWithFallback } from './components/figma/ImageWithFallback';
+} from '../../services/api';
+import { useApp } from '../AppContext';
+import { Breadcrumb } from './Breadcrumb';
 
 type Tab = 'cronologico' | 'tags' | 'eventos' | 'projetos' | 'coletivos';
 
@@ -302,8 +301,7 @@ export function Timeline() {
                       {/* imagem do Card */}
                       <div className="relative overflow-hidden cursor-pointer" style={{ aspectRatio: '4/3' }}
                         onClick={() => navigate(`/app/post/${post.id}`)}>
-                        <ImageWithFallback src={post.image} alt={post.title}
-                          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+                        <p>fallback image from figma</p>
                         <div className="absolute inset-0 pointer-events-none"
                           style={{ background: 'linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 50%)' }} />
                         <div className="absolute top-3 left-3 px-2 py-1 rounded-full text-xs font-medium"

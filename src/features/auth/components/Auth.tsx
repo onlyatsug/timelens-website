@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router';
 import { Eye, EyeOff, AlertCircle } from 'lucide-react';
-import { registerWithEmail, loginWithEmail, loginWithGoogle, AuthDomainError } from '../../lib/authService';
-import { useApp } from './AppContext';
+import { registerWithEmail, loginWithEmail, loginWithGoogle, AuthDomainError } from '../../../lib/authService';
+import { useApp } from '@/app/AppContext';
 
-export function Auth() {
+export default function Auth() {
   const navigate = useNavigate();
   // consome o usuário e o estado de carregamento do AppContext
   const { currentUser, loading: globalLoading }:any = useApp(); 
