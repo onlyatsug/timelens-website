@@ -1,6 +1,6 @@
 import { RouterProvider } from 'react-router';
-import { router } from './routes';
-import { AppProvider } from './components/AppContext';
+import { router } from './pages/routes';
+import { AppProvider } from './AppContext';
 
 export default function App() {
   return (

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router';
 import { Map, Bell, User, Plus, Clock } from 'lucide-react';
-import { useApp } from './AppContext';
+import { useApp } from '../AppContext';
 
 import { getNotifications } from '../../services/api';
 

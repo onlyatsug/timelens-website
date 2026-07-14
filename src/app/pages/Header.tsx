@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router';
 import { Map, Clock, Search, Bell, Plus, LogOut, Settings, Shield, X } from 'lucide-react';
-import { useApp } from './AppContext';
+import { useApp } from '../AppContext';
 import { getNotifications } from '../../services/api';
 
 const glass = {

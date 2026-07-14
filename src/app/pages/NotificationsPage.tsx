@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router';
 import { Heart, MessageCircle, AtSign, MapPin, Bell } from 'lucide-react';
 
 import { getNotifications, getPostById, markNotificationAsRead, timeAgo, Notification, Post } from '../../services/api'; 
-import { useApp } from './AppContext';
+import { useApp } from '../AppContext';
 import { Breadcrumb } from './Breadcrumb';
 
 const ICONS = {

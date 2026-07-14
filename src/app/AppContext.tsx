@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
-import { User } from '../../services/api';
-import { syncUser } from '../../services/api';
-import { watchAuthState, logout as firebaseLogout, getIdToken } from '../../lib/authService';
+import { User } from '../services/api';
+import { syncUser } from '../services/api';
+import { watchAuthState, logout as firebaseLogout, getIdToken } from '../lib/authService';
 
 interface AppContextValue {
   currentUser: User | null;

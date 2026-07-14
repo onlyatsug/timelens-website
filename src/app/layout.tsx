@@ -1,9 +1,9 @@
 import { Outlet, Navigate } from 'react-router';
 import { useApp } from './AppContext';
-import { Header } from './Header';
-import { BottomNav } from './BottomNav';
+import { Header } from './pages/Header';
+import { BottomNav } from './pages/BottomNav';
 
-export function Root() {
+export function Layout() {
   const { currentUser }:any = useApp();
 
   if (!currentUser) {

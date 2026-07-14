@@ -6,7 +6,7 @@ import { MapContainer, TileLayer, Marker, useMapEvents } from 'react-leaflet';
 import L from 'leaflet';
 
 import { getLocations, getTags, createPost, createLocation, CampusLocation } from '../../services/api';
-import { useApp } from './AppContext';
+import { useApp } from '../AppContext';
 import { Breadcrumb } from './Breadcrumb';
 
 delete (L.Icon.Default.prototype as any)._getIconUrl;
