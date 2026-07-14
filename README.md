@@ -1,4 +1,4 @@
-# Timelens — Website
+## 🌐 Overview
 
 O **Timelens** é uma plataforma web dedicada à preservação de memórias institucionais, comunitárias e coletivas, usando localização geográfica e cronologia como pilares de navegação: cada memória é um post ancorado a um local do campus e a uma linha do tempo.
 
@@ -6,18 +6,24 @@ Este repositório contém o **frontend** da aplicação, desenvolvido no escopo 
 
 > O layout original foi prototipado no Figma Make e depois evoluído em código.
 
-## Funcionalidades
+---
 
-- **Mapa do campus** como tela inicial, com locais navegáveis (Leaflet)
-- **Linha do tempo** de memórias por local, com filtros por tag, tipo, autor e busca
-- **Criação de memórias** (posts) com foto, data do evento, local e tags
-- **Curtidas e comentários** em cada memória
-- **Notificações** de curtidas/comentários
-- **Perfil de usuário** com as memórias postadas
-- **Autenticação** via Firebase, sincronizada com o backend
-- **Painel administrativo** para gestão de conteúdo
+## ✨ Features
 
-## Stack
+| Feature | Description |
+|---|---|
+|**Mapa do campus** |como tela inicial, com locais navegáveis (Leaflet)|
+|**Linha do tempo** |de memórias por local, com filtros por tag, tipo, autor e busca|
+|🐦**Criação de memórias** |(posts) com foto, data do evento, local e tags|
+|**Curtidas e comentários** |em cada memória|
+|🔔**Notificações**| de curtidas/comentários|
+|👤**Perfil de usuário** |com as memórias postadas|
+|🔐 **Autenticação** |via Firebase, sincronizada com o backend|
+| **Painel administrativo** |para gestão de conteúdo|
+
+---
+
+## 🛠️ Tech Stack
 
 - **React 18** + **TypeScript**
 - **Vite** como bundler
