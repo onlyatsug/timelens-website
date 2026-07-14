@@ -1,14 +1,15 @@
 import { createBrowserRouter } from 'react-router';
-import { Layout } from './layout';
-import AuthPage from './pages/auth/page';
-import { HomeMap } from './pages/HomeMap';
-import { Timeline } from './pages/Timeline';
-import { PostExpanded } from './pages/PostExpanded';
-import { NewMemory } from './pages/NewMemory';
-import { SearchPage } from './pages/SearchPage';
-import { ProfilePage } from './pages/ProfilePage';
-import { NotificationsPage } from './pages/NotificationsPage';
-import { AdminPanel } from './pages/AdminPanel';
+import { Layout } from '../layout';
+import { HomeMap } from './HomeMap';
+import { Timeline } from './Timeline';
+import { PostExpanded } from './PostExpanded';
+import { NewMemory } from './NewMemory';
+import { SearchPage } from './SearchPage';
+import { ProfilePage } from './ProfilePage';
+import { NotificationsPage } from './NotificationsPage';
+import { AdminPanel } from './AdminPanel';
+
+import AuthPage from './auth/page';
 
 export const router = createBrowserRouter([
   {
