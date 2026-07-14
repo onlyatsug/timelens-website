@@ -37,16 +37,7 @@ A aplicação sobe por padrão em `http://localhost:5173`.
 
 ### Variáveis de ambiente
 
-Crie um arquivo `.env` na raiz com as credenciais do Firebase usadas em `src/lib/firebase.ts`:
-
-```bash
-VITE_FIREBASE_API_KEY=
-VITE_FIREBASE_AUTH_DOMAIN=
-VITE_FIREBASE_PROJECT_ID=
-VITE_FIREBASE_STORAGE_BUCKET=
-VITE_FIREBASE_MESSAGING_SENDER_ID=
-VITE_FIREBASE_APP_ID=
-```
+A partir do arquivo `.env.example` Crie um arquivo `.env` na raiz com as credenciais do Firebase usadas em `src/lib/firebase.ts`:
 
 Por padrão, `src/services/api.ts` aponta para a API em produção (`https://timelens-server-psi.vercel.app/api`). Para rodar contra o [backend](../timelens-backend) localmente, altere a constante `API_URL` desse arquivo para `http://localhost:4000/api`.
 
@@ -56,11 +47,12 @@ Por padrão, `src/services/api.ts` aponta para a API em produção (`https://tim
 src/
   main.tsx                         ponto de entrada da aplicação
   app/
-    App.tsx                        componente raiz, provê o AppProvider e o router
-    routes.ts                      definição das rotas 
-    components/
+    app.tsx                        componente raiz
+    routes.ts                      definição das rotas
+    pages/
+      auth/page.tsx                página de auth
+    components/                    #tranformar em pages e separa em features
       Root.tsx                     layout comum das telas autenticadas (/app)
-      Auth.tsx                     telas de login/cadastro
       AppContext.tsx               contexto global: usuário atual, logout, bloqueios
       HomeMap.tsx / CampusMap.tsx  mapa do campus
       Timeline.tsx                 linha do tempo de memórias por local
@@ -74,13 +66,13 @@ src/
       BottomNav.tsx / 
       Breadcrumb.tsx               navegação
       ui/                          componentes shadcn/ui reutilizáveis
-      figma/                       assets exportados do Figma
+  features/
+    auth/                          feat responsável por autenticação
   services/
     api.ts                         tipos + todas as chamadas para o backend
   lib/
     firebase.ts                    inicialização do Firebase
     authService.ts                 login, cadastro, logout, observação de sessão
-  styles/                          estilos globais e tema
 ```
 
 ## Rotas
@@ -108,11 +100,11 @@ A autenticação funciona em duas camadas:
 
 ## Roadmap / débitos técnicos conhecidos
 
+- [ ] Refatorar para a arquitetura feature-based <-- working on
 - [ ] Criar e aplicar Testes (não tem nenhum)
 - [ ] Implementar React Router
 - [ ] Corrigir gambiarras de Tipagem do TS
 - [ ] Implementar variáveis para cores (design system)
 - [ ] Tornar a `API_URL` configurável via variável de ambiente (`VITE_API_URL`) em vez de hardcoded
 - [ ] Mover o bloqueio de usuários (hoje só em memória no `AppContext`) para o backend
-- [ ] Testes automatizados de componentes e fluxos principais
 - [ ] Revisar acessibilidade e responsividade das telas principais
