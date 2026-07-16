@@ -41,7 +41,7 @@ Este repositório contém o **frontend** da aplicação, desenvolvido no escopo 
 ```
 src/
 ├── main.tsx                         # ponto de entrada da aplicação
-│   └── app/
+│   ├── app/
 │   ├── app.tsx                      # componente raiz
 │   └── routes.ts                    # definição das rotas
 │
